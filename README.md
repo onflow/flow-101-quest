@@ -18,27 +18,27 @@ This README contains a practical quest. Anyone who completes this quest will rec
 
 ## Prize 🏆
 
-All quest completionists will receive **a super exclusive soulbound proof-of-knowledge NFT**. Aside from bragging rights, this special NFT will grant access to completion-gated channels in the official Flow Discord. 
+All quest completionists will receive **a super exclusive soulbound proof-of-knowledge NFT**. Aside from bragging rights, this special NFT will grant access to completion-gated channels in the official Flow Discord.
+*Note: The NFT type we are using (FLOATs) is supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
 
-### Who is eligible for this quest?
+
+## FAQs ⁈
+
+#### Who is eligible for this quest?
 Everyone! You don't need any pre-requisites :) Jump right in!
 
-### How long will this take?
+#### How long will this take?
 Assuming you know the basics of a command line, it will take approximately 15 minutes!
 
-*Note: FLOATs are one of the platforms supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
-
-## Before We Start 
+#### Before We Start 
 Let's make sure we have our rulers and calculator ready for class! You'll need these two items on your computer before we dive in: 
 
-#### 1. Git
-You can follow the [GitHub guide](https://github.com/git-guides/install-git) on how to install Git. 
 
-#### 2. Flow CLI
-Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation & follow the instructions. You just need to run a single command in your terminal! If you already have it installed, make sure it’s the latest version.
+## Step 0 - Prerequisites
 
-## Step 0 - Clone the Repo (Optional)
-This repo provides the completed transactions and scripts in order to complete the challenge. The recommended way to follow along is to clone the repo. Alternatively, you can download the repo or follow along by creating the necessary files manually. 
+**Install/Update the Flow CLI**: you **will** need the Flow CLI to complete this quest. Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation and follow the instructions. You simply need to run a single command in your terminal to install it. If you already have it installed, make sure it’s the latest version (check that page for updating instructions).
+
+**Clone this repo** (optional): This repo already provides the completed transactions and scripts in order to complete the quest. The recommended way to follow along is to clone the repo. Alternatively, you can download the repo or follow along by creating the necessary files manually. You can clone the repo by using this command:
 
 ```sh
 git clone https://github.com/onflow/flow-101-quest
@@ -46,7 +46,8 @@ cd flow-101-quest
 ```
 
 ## Step 1 - Start the Flow CLI
-First things first, you will need to start the Flow CLI in order to use commands.
+
+Once you are in your working directory, we'll initialize the Flow CLI and configure it in order to query Testnet.
 
 ```
 flow init
@@ -63,6 +64,7 @@ Reset configuration using: 'flow init --reset'
 ```
 
 ## Step 2 - Create your Testnet Account
+
 Before we can sign the yearbook, we'll need our own account! Luckily for us, we just need to run a simple command with the Flow CLI.
 
 #### 1. Create a Testnet Account
