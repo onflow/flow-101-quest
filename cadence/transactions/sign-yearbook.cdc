@@ -1,4 +1,4 @@
-import YearbookMinter from "../contracts/YearbookMinter.cdc"
+import YearbookMinter from 0x63ffd70144f80d07
 
 transaction(yearbookOwner: Address, messageKey: String){
     prepare(signer: AuthAccount){
