@@ -34,11 +34,12 @@ git clone https://github.com/onflow/yearbook-workshop
 
 ## Step 1 - Start the Flow CLI
 First things first, you will need to start the Flow CLI in order to use commands.
-```javascript
+```
 flow init
 ```
 You should see something like this: 
-```Configuration initialized
+```
+Configuration initialized
 Service account: 0xf8d6e0586b0a20c7
 
 Start emulator by running: 'flow emulator' 
@@ -49,7 +50,7 @@ Reset configuration using: 'flow init --reset'
 Before we can sign the yearbook, we'll need our own account! Luckily for us, we just need to run a simple command with the Flow CLI.
 
 #### 1. Create a Testnet Account
-```javascript
+```
 flow accounts create
 ```
 
@@ -158,7 +159,7 @@ transaction {
 ```
 
 Now we will use the Flow CLI to send this transaction and sign it with our `hero` account
-```bash
+```
 flow transactions send ./init-account.cdc --signer=hero --network=testnet
 ```
 `--signer` flag will tell CLI to use your `hero`Avatar as a signer 
@@ -183,7 +184,7 @@ pub fun main(): [String] {
 
 Execute this script with:
 
-```javascript
+```
 flow scripts execute ./get-message-keys.cdc --network=testnet
 ```
 
@@ -227,19 +228,19 @@ This transaction takes two arguments:
 
 We have initialized our account with Yearbook, so you can leave us a message wtih `fun` message key:
 
-```javascript
+```
 flow transactions send ./leave-message.cdc 0x5593df7d286bcdb8 fun --signer=hero --network=testnet 
 ```
 
-#### 3. Read Messages from Yearbook
+#### 4. Read Messages from Yearbook
 
-### Get Yearbook Messages
+#### Get Yearbook Messages
 
 Additionally you can also read all previous messages left by other heroes - both from your and other accounts.
 
 Create `get-yearbook-messages.cdc` file and populate it with Cadence code:
 
-```bash
+```javascript
 import YearbookMinter from 0x5593df7d286bcdb8
 
 pub fun main(owner: Address): {Address: String}{
@@ -254,7 +255,7 @@ pub fun main(owner: Address): {Address: String}{
 
 Let’s check our Yearbook and see who left messages there:
 
-```bash
+```javascript
 flow scripts execute ./get-yearbook-messages.cdc 0x5593df7d286bcdb8 --network=testnet 
 ```
 
