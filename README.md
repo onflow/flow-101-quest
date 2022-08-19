@@ -78,7 +78,7 @@ Name your new account `hero` and follow the rest of the instructions on screen.
 Enter an account name: hero
 ```
 
-> 💡You can pick any name, we are trying to keep the instructions in line with your experience. If you would decide to name your account differently, please use that name everywhere we refer to `hero` account and address.
+> 💡 You can pick any name, we are trying to keep the instructions in line with your experience. If you would decide to name your account differently, please use that name everywhere we refer to `hero` account and address.
 
 
 #### 3. Set your network to Flow Testnet
@@ -182,9 +182,10 @@ transaction {
 Now we will use the Flow CLI to send this transaction and sign it with our `hero` account
 
 ```
-flow transactions send ./init-account.cdc --signer=hero --network=testnet
+flow transactions send ./cadence/transactions/init-account.cdc --signer=hero --network=testnet
 ```
-> NOTE: if you cloned the repo, the file `./init-account.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you are in the home directory of the repo, you should use `./cadence/transactions/init-account.cdc` instead in the command above.
+
+> NOTE: This command will only work if you cloned the repo, since the file `./init-account.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./init-account.cdc` instead in the command above.
 
 Let's dissect this script:
 
@@ -196,33 +197,32 @@ This step initiates your account and creates a Yearbook resource if it doesn't e
 
 #### 2. Get Messages (from a Yearbook)
 
-To keep things civil, we limited the messages that people can leave on each others' yearbooks. You'll need to specify a message key instead of a custom message. Let’s get a list of available keys.
+To keep things civil, we limited the messages that people can leave on each others' yearbooks. You'll need to specify a message key instead of a custom message. Let’s get a list of available keys and corresponding messages.
 
 If you cloned the repo, you'll find the next file in `cadence/scripts/get-message-keys.cdc`. If you're creating them from scratch, create a file called `get-message-keys.cdc` and paste the following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
 
-pub fun main(): [String] {
-  return YearbookMinter.allowedMessages.keys
+pub fun main(): {String: String} {
+  return YearbookMinter.allowedMessages
 }
 ```
 
 Execute the script with the following Flow CLI command:
 
 ```
-flow scripts execute ./get-message-keys.cdc --network=testnet
+flow scripts execute ./cadence/scripts/get-message-keys.cdc --network=testnet
 ```
-> NOTE: if you cloned the repo, the file `get-message-keys.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder.
-
+> NOTE: This command will only work if you cloned the repo, since the file `./init-account.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./get-message-keys.cdc` instead in the command above.
 
 This will give you a list of keys:
 
 ```javascript
-"hello": "Hello"
-"bff": "You are the best friend anyone could ask for!"
-"cya": "See you around"
-"gator": "Later, aligator!"
+"hello": "Hello",
+"bff": "You are the best friend anyone could ask for!",
+"cya": "See you around",
+"gator": "Later, aligator!",
 "fun": "You make my life fun!"
 ```
 
@@ -234,8 +234,7 @@ In order to sign the Flow Yearbook, you will need to submit a transaction.
 
 * Flow Yearbook Testnet Address: `0x63ffd70144f80d07` 
 
-
-To sign the yearbook, we'll be executing the code below. If you cloned the repo, you'll find the file in `cadence/transactions/leave-message.cdc`. If you're creating them from scratch, create a file called `leave-message.cdc` and paste the following Cadence code:
+To sign the yearbook, we'll be executing the code below. If you cloned the repo, you'll find the file in `cadence/transactions/sign-yearbook.cdc`. If you're creating them from scratch, create a file called `sign-yearbook.cdc` and paste the following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
@@ -261,10 +260,10 @@ This transaction takes two arguments:
 To run this transaction, use the following command. We are using the `fun` message key as an example, feel free to choose your favorite from the list in the previous section.
 
 ```
-flow transactions send ./leave-message.cdc 0x63ffd70144f80d07 fun --signer=hero --network=testnet 
+flow transactions send ./cadence/transactions/sign-yearbook.cdc 0x63ffd70144f80d07 fun --signer=hero --network=testnet 
 ```
 
-> NOTE: if you cloned the repo, the file `./leave-message.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/transactions`.  
+> NOTE: This command will only work if you cloned the repo, since the file `sign-yearbook.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./sign-yearbook.cdc` instead in the command above.
 
 
 #### 4. Read Messages from Yearbook
@@ -293,9 +292,11 @@ pub fun main(owner: Address): {Address: String}{
 Let’s check our Yearbook and see who left messages there:
 
 ```javascript
-flow scripts execute ./get-yearbook-messages.cdc 0x63ffd70144f80d07 --network=testnet 
+flow scripts execute ./cadence/scripts/get-yearbook-messages.cdc 0x63ffd70144f80d07 --network=testnet 
 ```
-> NOTE: if you cloned the repo, the file `./get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/scripts/`.  
+
+> NOTE: This command will only work if you cloned the repo, since the file `get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./get-yearbook-messages.cdc` instead in the command above.
+
 
 You should be able to see a list of addresses and corresponding messages, they have left in our Yearbook. 
 
