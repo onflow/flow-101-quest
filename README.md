@@ -5,7 +5,7 @@ The goal of this quest is to practice interactive with smart contracts on Flow. 
 
 This README contains a practical quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
 
-## Challenge Overview 📖
+## Quest Overview 📖
 1. Create a Testnet Account
 2. Interact with a smart contract
 - - Sign transactions (mutate the chain)
@@ -19,19 +19,17 @@ This README contains a practical quest. Anyone who completes this quest will rec
 ## Prize 🏆
 
 All quest completionists will receive **a super exclusive soulbound proof-of-knowledge NFT**. Aside from bragging rights, this special NFT will grant access to completion-gated channels in the official Flow Discord.
-*Note: The NFT type we are using (FLOATs) is supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
+
+*Note: The NFT type we are using ([FLOATs](https://floats.city/)) is supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
 
 
-## FAQs ⁈
+## FAQs❓
 
 #### Who is eligible for this quest?
 Everyone! You don't need any pre-requisites :) Jump right in!
 
 #### How long will this take?
 Assuming you know the basics of a command line, it will take approximately 15 minutes!
-
-#### Before We Start 
-Let's make sure we have our rulers and calculator ready for class! You'll need these two items on your computer before we dive in: 
 
 
 ## Step 0 - Prerequisites
