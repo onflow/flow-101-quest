@@ -1,7 +1,7 @@
 
 # Flow 101 Quest 🪄
 
-The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
+The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0xb112d95fc926a454/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
 
 This README contains a practical quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
 
@@ -152,7 +152,7 @@ If you inspect the files, you should see the address and private key for your fr
 
 ## Step 3 - Class is in Session!
 
-The official Flow Yearbook contract is already deployed to Testnet, so in this quest we'll simply be interacting with it from the command line, via the Flow CLI. You can view it on Flow View Source (one of Flow's contract explorers). Click [here](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8/contract/YearbookMinter) to view the contract. Alternatively, check the [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) file for context on how the contract works.
+The official Flow Yearbook contract is already deployed to Testnet, so in this quest we'll simply be interacting with it from the command line, via the Flow CLI. You can view it on Flow View Source (one of Flow's contract explorers). Click [here](https://flow-view-source.com/testnet/account/0xb112d95fc926a454/contract/YearbookMinter) to view the contract. Alternatively, check the [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) file for context on how the contract works.
 
 In this quest, we'll be skipping the [theory](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) and showing you how to interact with scripts and transactions via the Flow CLI. Let's go!
 
@@ -161,7 +161,7 @@ In this quest, we'll be skipping the [theory](https://github.com/onflow/flow-101
 First let's take a look at our first transaction. If you cloned the repo, you'll find it in `cadence/transactions/init-accound.cdc`. Otherwise, just create a file called `init-account.cdc` and paste the content with following Cadence code:
 
 ```javascript
-import YearbookMinter from 0x5593df7d286bcdb8
+import YearbookMinter from 0xb112d95fc926a454
 
 transaction {
   prepare(signer: AuthAccount) {
@@ -201,7 +201,7 @@ To keep things civil, we limited the messages that people can leave on each othe
 If you cloned the repo, you'll find the next file in `cadence/scripts/get-message-keys.cdc`. If you're creating them from scratch, create a file called `get-message-keys.cdc` and paste the following Cadence code:
 
 ```javascript
-import YearbookMinter from 0x5593df7d286bcdb8
+import YearbookMinter from 0xb112d95fc926a454
 
 pub fun main(): [String] {
   return YearbookMinter.allowedMessages.keys
@@ -232,13 +232,13 @@ Pick your favorite, and now let's leave a message in the main Flow Yearbook!
 
 In order to sign the Flow Yearbook, you will need to submit a transaction. 
 
-* Flow Yearbook Testnet Address: `0x5593df7d286bcdb8` 
+* Flow Yearbook Testnet Address: `0xb112d95fc926a454` 
 
 
 To sign the yearbook, we'll be executing the code below. If you cloned the repo, you'll find the file in `cadence/transactions/leave-message.cdc`. If you're creating them from scratch, create a file called `leave-message.cdc` and paste the following Cadence code:
 
 ```javascript
-import YearbookMinter from 0x5593df7d286bcdb8
+import YearbookMinter from 0xb112d95fc926a454
 
 transaction(yearbookOwner: Address, messageKey: String){
     prepare(signer: AuthAccount){
@@ -261,7 +261,7 @@ This transaction takes two arguments:
 To run this transaction, use the following command. We are using the `fun` message key as an example, feel free to choose your favorite from the list in the previous section.
 
 ```
-flow transactions send ./leave-message.cdc 0x5593df7d286bcdb8 fun --signer=hero --network=testnet 
+flow transactions send ./leave-message.cdc 0xb112d95fc926a454 fun --signer=hero --network=testnet 
 ```
 
 > NOTE: if you cloned the repo, the file `./leave-message.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/transactions`.  
@@ -276,7 +276,7 @@ Additionally you can also read all previous messages left by other heroes - both
 To do this, we'll use the `get-yearbook-messages.cdc` script file, which you will find in `cadence/scripts/`. Otherwise create it from scratch and paste in the following Cadence code:
 
 ```javascript
-import YearbookMinter from 0x5593df7d286bcdb8
+import YearbookMinter from 0xb112d95fc926a454
 
 pub fun main(owner: Address): {Address: String}{
     // get a reference to the yearbook
@@ -293,13 +293,13 @@ pub fun main(owner: Address): {Address: String}{
 Let’s check our Yearbook and see who left messages there:
 
 ```javascript
-flow scripts execute ./get-yearbook-messages.cdc 0x5593df7d286bcdb8 --network=testnet 
+flow scripts execute ./get-yearbook-messages.cdc 0xb112d95fc926a454 --network=testnet 
 ```
 > NOTE: if you cloned the repo, the file `./get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/scripts/`.  
 
 You should be able to see a list of addresses and corresponding messages, they have left in our Yearbook. 
 
-You can also update that `0x5593df7d286bcdb8` to your own address - which can be found within `hero.private.json` file and check who left messages in your Yearbook. If you don't have any messages, you can create another testnet account and try leaving one, or share this with a friend and get them to leave a message! :) 
+You can also update that `0xb112d95fc926a454` to your own address - which can be found within `hero.private.json` file and check who left messages in your Yearbook. If you don't have any messages, you can create another testnet account and try leaving one, or share this with a friend and get them to leave a message! :) 
 
 
 ## Step 4 - Get a Mainnet Account to receive your NFT!
