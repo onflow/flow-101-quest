@@ -195,6 +195,8 @@ Let's dissect this script:
 
 This step initiates your account and creates a Yearbook resource if it doesn't exist yet.
 
+**Pro Tip** 👉 every time you run a transaction, the Flow CLI will poll until the transaction status is **sealed**, which means it is fully committed to the chain. So once a transaction finished, make sure to check the outcome of command by scrolling up and checking that it says "Status ✅ SEALED" and no other errors.
+
 #### 2. Get Messages (from a Yearbook)
 
 To keep things civil, we limited the messages that people can leave on each others' yearbooks. You'll need to specify a message key instead of a custom message. Let’s get a list of available keys and corresponding messages.
