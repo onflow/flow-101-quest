@@ -1,5 +1,3 @@
-import FungibleToken from "../contracts/standard/FungibleToken.cdc"
-import FlowToken from "../contracts/standard/FlowToken.cdc"
 import YearbookMinter from "../contracts/YearbookMinter.cdc"
 
 transaction {
