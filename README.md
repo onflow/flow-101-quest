@@ -321,7 +321,7 @@ In order for us to deliver your Soulbound proof-of-knowledge NFT (FLOAT), you wi
 
 Congratulations on sending your first transactions on Testnet and utilizing Flow CLI commands! You're well on your way to becoming a proficient developer on Flow. In order to receive your soulbound Proof-of-Knowledge NFT, please fill out the form with the following information: 
 
-- Testnet Account Address (to verify your work)
+- Testnet Account Address (to verify your work - you'll find this in your `hero.private.json` file)
 - Mainnet Account Address (to receive the FLOAT)
 - Email Address (so we can reach out for SWAG!)
 
