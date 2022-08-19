@@ -274,7 +274,7 @@ flow transactions send ./cadence/transactions/sign-yearbook.cdc 0x63ffd70144f80d
 
 Additionally you can also read all previous messages left by other heroes - both from your and others' accounts.
 
-To do this, we'll use the `get-yearbook-messages.cdc` script file, which you will find in `cadence/scripts/`. Otherwise create it from scratch and paste in the following Cadence code:
+To do this, we'll use the `get-messages.cdc` script file, which you will find in `cadence/scripts/`. Otherwise create it from scratch and paste in the following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
@@ -294,10 +294,10 @@ pub fun main(owner: Address): {Address: String}{
 Let’s check our Yearbook and see who left messages there:
 
 ```javascript
-flow scripts execute ./cadence/scripts/get-yearbook-messages.cdc 0x63ffd70144f80d07 --network=testnet 
+flow scripts execute ./cadence/scripts/get-messages.cdc 0x63ffd70144f80d07 --network=testnet 
 ```
 
-> NOTE: This command will only work if you cloned the repo, since the file `get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./get-yearbook-messages.cdc` instead in the command above.
+> NOTE: This command will only work if you cloned the repo, since the file `get-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./get-messages.cdc` instead in the command above.
 
 
 You should be able to see a list of addresses and corresponding messages, they have left in our Yearbook. 
