@@ -1,0 +1,37 @@
+{
+  "emulators": {
+    "default": {
+      "port": 3569,
+      "serviceAccount": "emulator-account"
+    }
+  },
+  "contracts": {
+    "YearbookMinter": {
+      "source": "./contracts/YearbookMinter.cdc",
+      "aliases": {
+        "testnet": "63ffd70144f80d07"
+      }
+    },
+    "FungibleToken": {
+      "aliases": {
+        "testnet": "9a0766d93b6608b7"
+      }
+    },
+    "FlowToken": {
+      "aliases": {
+        "testnet": "7e60df042a9c0868"
+      }
+    }
+  },
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000"
+  },
+  "accounts": {
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "key": "5de24eb3497b78236c96a251bfde653d8fdf254ddb2cc9ea6661def9541c60ac"
+    }
+  }
+}

@@ -2,15 +2,13 @@ import YearbookMinter from "../contracts/YearbookMinter.cdc"
 
 transaction {
   prepare(signer: AuthAccount) {
-    let yearbookExists = signer.getCapability(/public/Yearbook)
+    let yearbookExists = signer.getCapability(YearbookMinter.publicPath)
       .check<&YearbookMinter.Yearbook>()
 
     if(!yearbookExists){
-      let capability = signer
-        .borrow<&FlowToken.Vault{FungibleToken.Balance}>(from: /storage/flowTokenVault)!
-      let book <- YearbookMinter.createYearbook(capability: capability)
-      signer.save(<-book, to: /storage/Yearbook)
-      signer.link<&YearbookMinter.Yearbook>(/public/Yearbook, target: /storage/Yearbook)
+      let book <- YearbookMinter.createYearbook(ownerAddress: signer.address)
+      signer.save(<-book, to: YearbookMinter.storagePath)
+      signer.link<&YearbookMinter.Yearbook>(YearbookMinter.publicPath, target: YearbookMinter.storagePath)
     }
   }
 }
