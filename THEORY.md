@@ -1,4 +1,4 @@
-# Introduction
+# Intro to Cadence and the Yearbook Contract 📚
 
 ## Introduction
 
