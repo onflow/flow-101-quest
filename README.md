@@ -20,8 +20,11 @@ This README contains a practical quest. Anyone who completes this quest will rec
 
 All quest completionists will receive **a super exclusive soulbound proof-of-knowledge NFT**. Aside from bragging rights, this special NFT will grant access to completion-gated channels in the official Flow Discord. 
 
-### Who is eligible for this quest?
+### Who is eligible for this quest?
 Everyone! You don't need any pre-requisites :) Jump right in!
+
+### How long will this take?
+Assuming you know the basics of a command line, it will take approximately 15 minutes!
 
 *Note: FLOATs are one of the platforms supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
 
@@ -35,18 +38,22 @@ You can follow the [GitHub guide](https://github.com/git-guides/install-git) on 
 Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation & follow the instructions. You just need to run a single command in your terminal! If you already have it installed, make sure it’s the latest version.
 
 ## Step 0 - Clone the Repo (Optional)
-This repo provides the completed contracts and scripts in order to complete the challenge. Alternatively, following along the steps below will teach you how to complete the challenge as well, by creating the files manually. 
+This repo provides the completed transactions and scripts in order to complete the challenge. The recommended way to follow along is to clone the repo. Alternatively, you can download the repo or follow along by creating the necessary files manually. 
 
-```
-git clone https://github.com/onflow/yearbook-workshop
+```sh
+git clone https://github.com/onflow/flow-101-quest
+cd flow-101-quest
 ```
 
 ## Step 1 - Start the Flow CLI
 First things first, you will need to start the Flow CLI in order to use commands.
+
 ```
 flow init
 ```
+
 You should see something like this: 
+
 ```
 Configuration initialized
 Service account: 0xf8d6e0586b0a20c7
@@ -59,6 +66,7 @@ Reset configuration using: 'flow init --reset'
 Before we can sign the yearbook, we'll need our own account! Luckily for us, we just need to run a simple command with the Flow CLI.
 
 #### 1. Create a Testnet Account
+
 ```
 flow accounts create
 ```
@@ -69,10 +77,12 @@ Name your new account `hero` and follow the rest of the instructions on screen.
 ```
 Enter an account name: hero
 ```
+
 > 💡You can pick any name, we are trying to keep the instructions in line with your experience. If you would decide to name your account differently, please use that name everywhere we refer to `hero` account and address.
-> 
+
 
 #### 3. Set your network to Flow Testnet
+
 ```
 Use the arrow keys to navigate: ↓ ↑ → ← 
 ? Choose a network: 
@@ -142,12 +152,12 @@ If you inspect the files, you should see the address and private key for your fr
 
 ## Step 3 - Class is in Session!
 
-The official Flow Yearbook contract is deployed to Testnet. You can view it on Flow View Source (one of Flow's contract explorers). Click the link below to view the contract.
-- Contract Address: [0x5593df7d286bcdb8](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8/contract/YearbookMinter) 
+The official Flow Yearbook contract is already deployed to Testnet, so in this quest we'll simply be interacting with it from the command line, via the Flow CLI. You can view it on Flow View Source (one of Flow's contract explorers). Click [here](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8/contract/YearbookMinter) to view the contract. Alternatively, check the [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) file for context on how the contract works.
 
-You will be learning a little about Cadence (Flow's native smart contract programming language), smart contracts, scripts and transactions, and how to execute them, in this section. Let's go!
+In this quest, we'll be skipping the [theory](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) and showing you how to interact with scripts and transactions via the Flow CLI. Let's go!
 
 #### 1. Init Account
+
 First let's take a look at our first transaction. If you cloned the repo, you'll find it in `cadence/transactions/init-accound.cdc`. Otherwise, just create a file called `init-account.cdc` and paste the content with following Cadence code:
 
 ```javascript
@@ -174,7 +184,7 @@ Now we will use the Flow CLI to send this transaction and sign it with our `hero
 ```
 flow transactions send ./init-account.cdc --signer=hero --network=testnet
 ```
-> NOTE: if you cloned the repo, the file `./init-account.cdc` is located in `./cadence/transactions/`. Update the path in the command below accordingly, or navigate to that folder by typing `cd cadence/transactions`  
+> NOTE: if you cloned the repo, the file `./init-account.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you are in the home directory of the repo, you should use `./cadence/transactions/init-account.cdc` instead in the command above.
 
 Let's dissect this script:
 
@@ -203,7 +213,7 @@ Execute the script with the following Flow CLI command:
 ```
 flow scripts execute ./get-message-keys.cdc --network=testnet
 ```
-> NOTE: if you cloned the repo, the file `get-message-keys.cdc` is located in `./cadence/scripts/`. Update the path in the command above accordingly, or navigate to that folder.
+> NOTE: if you cloned the repo, the file `get-message-keys.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder.
 
 
 This will give you a list of keys:
@@ -254,7 +264,7 @@ To run this transaction, use the following command. We are using the `fun` messa
 flow transactions send ./leave-message.cdc 0x5593df7d286bcdb8 fun --signer=hero --network=testnet 
 ```
 
-> NOTE: if you cloned the repo, the file `./leave-message.cdc` is located in `./cadence/transactions/`. Update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/transactions`.  
+> NOTE: if you cloned the repo, the file `./leave-message.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/transactions`.  
 
 
 #### 4. Read Messages from Yearbook
@@ -285,7 +295,7 @@ Let’s check our Yearbook and see who left messages there:
 ```javascript
 flow scripts execute ./get-yearbook-messages.cdc 0x5593df7d286bcdb8 --network=testnet 
 ```
-> NOTE: if you cloned the repo, the file `./get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/scripts/`.  
+> NOTE: if you cloned the repo, the file `./get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/scripts/`.  
 
 You should be able to see a list of addresses and corresponding messages, they have left in our Yearbook. 
 
