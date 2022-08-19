@@ -111,7 +111,7 @@ You can also navigate to the link manually: https://testnet-faucet.onflow.org/?k
 Waiting for your account to be created, please finish all the steps in the browser...
 ```
 
-![Gif on how to access mainnet address from https://floats.city](./assets/testnet_faucet_fund_account.gif)
+![Funding your testnet account from Flow faucet](./assets/testnet_faucet.gif)
 
 #### 6. You're all set!
 
@@ -272,7 +272,7 @@ In order for us to deliver your FLOAT and other amazing swag, you will need to p
 4. Click on the address
 5. Copy the Address from the “Account” tab (this is your mainnet account!)
 
-![Gif on how to access mainnet address from https://floats.city](./assets/FLOAT_mainnet_account.gif)
+![Gif on how to access mainnet address from https://floats.city](./assets/FLOAT_mainnet.gif)
 ## Step 5 - You made it! 👏
 
 Congratulations on sending your first transactions on Testnet and utilizing Flow CLI commands! You're well on your way to becoming a proficient developer on Flow. In order to receive your FLOAT, please fill out the form with the following information: 
