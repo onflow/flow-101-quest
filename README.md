@@ -1,15 +1,15 @@
 
 # Flow 101
-The Goal of this workshop is to teach you how to interact with smart contracts on Flow. This is very useful and fundamental as a web3 developer! You can apply this knowledge when building your own super cool dapps. 
+The goal of this workshop is to learn about smart contracts and how to interact with them on Flow. This is very fundamental as a take your first steps on becoming a web3 developer! This knowledge will be helpful when building your own super cool dapps. 
 
 ## Challenge Overview
 1. Create a Testnet Account
 2. Sign the Flow Yearbook contract 
 
 ## What You'll Learn
-- Learn how to use Flow CLI for development
-- Create a testnet account on Flow
-- Send a transaction to sign the 'Flow Yearbook' to make it official!
+1. Learn how to use Flow CLI for development
+2. Create a testnet account on Flow
+3. Send a transaction to sign the 'Flow Yearbook' to make it official!
 
 ## Prizes
 - A soulbound proof-of-knowledge NFT for completing the quest. This special NFT will grant access to completion-gated channels in the official Flow Discord.
@@ -264,7 +264,9 @@ You can also update that `0x5593df7d286bcdb8` to your own address - which can be
 
 
 ## Step 4 - Mainnet Account
-In order for us to deliver your FLOAT and other amazing swag, you will need to provide us your Mainnet account address. The easiest way is via [Float City](https://floats.city/) webpage - which will also help to initialize your account with FLOAT Collection.
+In order for us to deliver your FLOATs, you will need to provide us your Mainnet account address. The easiest way is via [Float City](https://floats.city/) webpage - which will also help to initialize your account with FLOAT Collection.
+
+*If you want to share it on your Instagram, choose Dapper as your wallet selection*
 
 1. Visit [https://floats.city](https://floats.city) 
 2. Click on “Connect Wallet” 
