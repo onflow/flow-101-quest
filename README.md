@@ -1,18 +1,27 @@
 
-# Flow 101
-The goal of this workshop is to learn about smart contracts and how to interact with them on Flow. This is very fundamental as a take your first steps on becoming a web3 developer! This knowledge will be helpful when building your own super cool dapps. 
+# Flow 101 Quest 🪄
 
-## Challenge Overview
+The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md]. 
+
+This README contains a practical quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
+
+## Challenge Overview 📖
 1. Create a Testnet Account
-2. Sign the Flow Yearbook contract 
+2. Interact with a smart contract
+- - Sign transactions (mutate the chain)
+- - Execute scripts (query the chain)
 
-## What You'll Learn
-1. Learn how to use Flow CLI for development
+## What You'll Learn 💻
+1. Learn how to use Flow CLI, an essential tool as a Flow developer
 2. Create a testnet account on Flow
-3. Send a transaction to sign the 'Flow Yearbook' to make it official!
+3. Send a transactions, such as signing the 'Flow Yearbook'!
 
-## Prizes
-- A soulbound proof-of-knowledge NFT for completing the quest. This special NFT will grant access to completion-gated channels in the official Flow Discord.
+## Prize 🏆
+
+All quest completionists will receive **a super exclusive soulbound proof-of-knowledge NFT**. Aside from bragging rights, this special NFT will grant access to completion-gated channels in the official Flow Discord. 
+
+### Who is eligible for this quest?
+Everyone! You don't need any pre-requisites :) Jump right in!
 
 *Note: FLOATs are one of the platforms supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
 
@@ -20,7 +29,7 @@ The goal of this workshop is to learn about smart contracts and how to interact 
 Let's make sure we have our rulers and calculator ready for class! You'll need these two items on your computer before we dive in: 
 
 #### 1. Git
-You can follow the [GitHub guide]() on how to install Git. 
+You can follow the [GitHub guide](https://github.com/git-guides/install-git) on how to install Git. 
 
 #### 2. Flow CLI
 Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation & follow the instructions. You just need to run a single command in your terminal! If you already have it installed, make sure it’s the latest version.
