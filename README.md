@@ -26,7 +26,7 @@ You can follow the [GitHub guide]() on how to install Git.
 Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation & follow the instructions. You just need to run a single command in your terminal! If you already have it installed, make sure it’s the latest version.
 
 ## Step 0 - Clone the Repo (Optional)
-This repo provides the completed contracts and scripts in order to complete the challenge. Alternatively, following along the steps below will teach you how to complete the challenge as well. It is recommended you follow the guide first to understand, then clone the repo 😊
+This repo provides the completed contracts and scripts in order to complete the challenge. Alternatively, following along the steps below will teach you how to complete the challenge as well, by creating the files manually. 
 
 ```
 git clone https://github.com/onflow/yearbook-workshop
@@ -133,22 +133,24 @@ If you inspect the files, you should see the address and private key for your fr
 
 ## Step 3 - Class is in Session!
 
-The official Flow Yearbook contract is deployed to Testnet. 
-- Contract Address: [0x5593df7d286bcdb8](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8) 
+The official Flow Yearbook contract is deployed to Testnet. You can view it on Flow View Source (one of Flow's contract explorers). Click the link below to view the contract.
+- Contract Address: [0x5593df7d286bcdb8](https://flow-view-source.com/testnet/account/0x5593df7d286bcdb8/contract/YearbookMinter) 
 
-You will be learning about Cadence, smart contracts, scripts and transactions, and how to execute in this section. Exciting!
+You will be learning a little about Cadence (Flow's native smart contract programming language), smart contracts, scripts and transactions, and how to execute them, in this section. Let's go!
 
 #### 1. Init Account
-First let's create our `init-account.cdc` file, open it and update the content with following Cadence code:
+First let's take a look at our first transaction. If you cloned the repo, you'll find it in `cadence/transactions/init-accound.cdc`. Otherwise, just create a file called `init-account.cdc` and paste the content with following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x5593df7d286bcdb8
 
 transaction {
   prepare(signer: AuthAccount) {
+    // checks if we have a yearbook resource in our account
     let yearbookExists = signer.getCapability(YearbookMinter.publicPath)
       .check<&YearbookMinter.Yearbook>()
 
+    // if it doesn't find one, let's create a new one.
     if(!yearbookExists){
       let book <- YearbookMinter.createYearbook(ownerAddress: signer.address)
       signer.save(<-book, to: YearbookMinter.storagePath)
@@ -159,20 +161,25 @@ transaction {
 ```
 
 Now we will use the Flow CLI to send this transaction and sign it with our `hero` account
+
 ```
 flow transactions send ./init-account.cdc --signer=hero --network=testnet
 ```
-`--signer` flag will tell CLI to use your `hero`Avatar as a signer 
+> NOTE: if you cloned the repo, the file `./init-account.cdc` is located in `./cadence/transactions/`. Update the path in the command below accordingly, or navigate to that folder by typing `cd cadence/transactions`  
 
-`--network` flag will specify which network we are interacting with - in this case `Testnet`
+Let's dissect this script:
 
-This step initiates your account so that you can call on the function to send your message to the yearbook.
+`--signer` flag will tell the CLI to use your `hero` profile as a signer 
 
-#### 2. Get Available Messages
+`--network` flag will specify which network we are interacting with - in this case we are using `Testnet`
 
-To protect the yearbook from any harmful “agents”, you will need to provide a message key instead of actual message. Let’s get a list of available keys.
+This step initiates your account and creates a Yearbook resource if it doesn't exist yet.
 
-Create a file `get-message-keys.cdc` and fill in Cadence code:
+#### 2. Get Messages (from a Yearbook)
+
+To keep things civil, we limited the messages that people can leave on each others' yearbooks. You'll need to specify a message key instead of a custom message. Let’s get a list of available keys.
+
+If you cloned the repo, you'll find the next file in `cadence/scripts/get-message-keys.cdc`. If you're creating them from scratch, create a file called `get-message-keys.cdc` and paste the following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x5593df7d286bcdb8
@@ -182,13 +189,15 @@ pub fun main(): [String] {
 }
 ```
 
-Execute this script with:
+Execute the script with the following Flow CLI command:
 
 ```
 flow scripts execute ./get-message-keys.cdc --network=testnet
 ```
+> NOTE: if you cloned the repo, the file `get-message-keys.cdc` is located in `./cadence/scripts/`. Update the path in the command above accordingly, or navigate to that folder.
 
-This shall give you a following list of keys:
+
+This will give you a list of keys:
 
 ```javascript
 "hello": "Hello"
@@ -198,57 +207,66 @@ This shall give you a following list of keys:
 "fun": "You make my life fun!"
 ```
 
-You can pick any of those, when leaving a message in Flow’s Yearbook.
+Pick your favorite, and now let's leave a message in the main Flow Yearbook!
 
 #### 3. Sign the Yearbook
-In order to sign someone the Flow Yearbook, you will need to sign a specifically designed transaction. 
+
+In order to sign the Flow Yearbook, you will need to submit a transaction. 
 
 * Flow Yearbook Testnet Address: `0x5593df7d286bcdb8` 
 
 
-Create a `leave-message.cdc` and paste the following code there:
+To sign the yearbook, we'll be executing the code below. If you cloned the repo, you'll find the file in `cadence/transactions/leave-message.cdc`. If you're creating them from scratch, create a file called `leave-message.cdc` and paste the following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x5593df7d286bcdb8
 
 transaction(yearbookOwner: Address, messageKey: String){
     prepare(signer: AuthAccount){
+        // borrow the public reference & capability to the Yearbook at the address specified
         let yearbookReference = getAccount(yearbookOwner)
             .getCapability(YearbookMinter.publicPath)
             .borrow<&YearbookMinter.Yearbook>()
             ?? panic(YearbookMinter.errNoYearbook)
-
+        
+        // sign the yearbook
         yearbookReference.leaveMessage(signer: signer.address, messageKey: messageKey)
     }
 }
 ```
+
 This transaction takes two arguments: 
 - `yearbookOwner` - the address of the Yearbook owner we are trying to modify
 - `messageKey` - the message key we’ve just discussed
 
-We have initialized our account with Yearbook, so you can leave us a message wtih `fun` message key:
+To run this transaction, use the following command. We are using the `fun` message key as an example, feel free to choose your favorite from the list in the previous section.
 
 ```
 flow transactions send ./leave-message.cdc 0x5593df7d286bcdb8 fun --signer=hero --network=testnet 
 ```
 
+> NOTE: if you cloned the repo, the file `./leave-message.cdc` is located in `./cadence/transactions/`. Update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/transactions`.  
+
+
 #### 4. Read Messages from Yearbook
 
 #### Get Yearbook Messages
 
-Additionally you can also read all previous messages left by other heroes - both from your and other accounts.
+Additionally you can also read all previous messages left by other heroes - both from your and others' accounts.
 
-Create `get-yearbook-messages.cdc` file and populate it with Cadence code:
+To do this, we'll use the `get-yearbook-messages.cdc` script file, which you will find in `cadence/scripts/`. Otherwise create it from scratch and paste in the following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x5593df7d286bcdb8
 
 pub fun main(owner: Address): {Address: String}{
+    // get a reference to the yearbook
     let yearbookReference = getAccount(owner)
         .getCapability(YearbookMinter.publicPath)
         .borrow<&YearbookMinter.Yearbook>() 
         ?? panic(YearbookMinter.errNoYearbook)
     
+    // return its messages
     return yearbookReference.messages
 }
 ```
@@ -258,32 +276,33 @@ Let’s check our Yearbook and see who left messages there:
 ```javascript
 flow scripts execute ./get-yearbook-messages.cdc 0x5593df7d286bcdb8 --network=testnet 
 ```
+> NOTE: if you cloned the repo, the file `./get-yearbook-messages.cdc` is located in `./cadence/scripts/`. Update the path in the command above accordingly, or navigate to that folder by typing `cd cadence/scripts/`.  
 
 You should be able to see a list of addresses and corresponding messages, they have left in our Yearbook. 
 
-You can also update that `0x5593df7d286bcdb8` to your own address - which can be found within `hero.private.json` file and check who left messages in your Yearbook.
+You can also update that `0x5593df7d286bcdb8` to your own address - which can be found within `hero.private.json` file and check who left messages in your Yearbook. If you don't have any messages, you can create another testnet account and try leaving one, or share this with a friend and get them to leave a message! :) 
 
 
-## Step 4 - Mainnet Account
-In order for us to deliver your FLOATs, you will need to provide us your Mainnet account address. The easiest way is via [Float City](https://floats.city/) webpage - which will also help to initialize your account with FLOAT Collection.
-
-*If you want to share it on your Instagram, choose Dapper as your wallet selection*
+## Step 4 - Get a Mainnet Account to receive your NFT!
+In order for us to deliver your Soulbound proof-of-knowledge NFT (FLOAT), you will need to send us your Mainnet account address. The easiest way is via [Float City](https://floats.city/) webpage - which will also help to initialize your account with FLOAT Collection.
 
 1. Visit [https://floats.city](https://floats.city) 
 2. Click on “Connect Wallet” 
-3. Login with the wallet of your choice (choose wisely! This is where you will receive your FLOAT!)
-4. Click on the address
+3. Login with the wallet of your choice (choose wisely! This is where you will receive your FLOAT! If you want to show this off on Instagram, choose Dapper)
+4. Click on the address in the top right
 5. Copy the Address from the “Account” tab (this is your mainnet account!)
+6. Optional: On that page, make sure to initialize your FLOAT collection if this is your first time receiving/using FLOATs
 
 ![Gif on how to access mainnet address from https://floats.city](./assets/FLOAT_mainnet.gif)
+
 ## Step 5 - You made it! 👏
 
-Congratulations on sending your first transactions on Testnet and utilizing Flow CLI commands! You're well on your way to becoming a proficient developer on Flow. In order to receive your FLOAT, please fill out the form with the following information: 
+Congratulations on sending your first transactions on Testnet and utilizing Flow CLI commands! You're well on your way to becoming a proficient developer on Flow. In order to receive your soulbound Proof-of-Knowledge NFT, please fill out the form with the following information: 
 
 - Testnet Account Address (to verify your work)
 - Mainnet Account Address (to receive the FLOAT)
 - Email Address (so we can reach out for SWAG!)
 
-[Please fill out the form here](https://share.hsforms.com/1ouJ1prrSR566_ZuB9krH5Q3u4gy)
+# [>> SUBMISSION FORM <<](https://share.hsforms.com/1ouJ1prrSR566_ZuB9krH5Q3u4gy)
 
 *Verification process will be automatically processed every week and you can expect to see your FLOAT in your account within a week's time of your form submission*
