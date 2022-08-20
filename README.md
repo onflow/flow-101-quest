@@ -36,6 +36,8 @@ Assuming you know the basics of a command line, it will take approximately 15 mi
 
 **Install/Update the Flow CLI**: you **will** need the Flow CLI to complete this quest. Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation and follow the instructions. You simply need to run a single command in your terminal to install it. If you already have it installed, make sure it’s the latest version (check that page for updating instructions).
 
+#### >> [Install or upgrade the Flow CLI before starting this quest](https://developers.flow.com/tools/flow-cli/install) <<
+
 **Clone this repo** (optional): This repo already provides the completed transactions and scripts in order to complete the quest. The recommended way to follow along is to clone the repo. Alternatively, you can download the repo or follow along by creating the necessary files manually. You can clone the repo by using this command:
 
 ```sh
