@@ -415,4 +415,4 @@ pub fun main(owner: Address): {Address: String}{
 
 ## 全部完成❗️
 
-🎉 现在你已经知晓了 Yearbook 合约背后的理论了！请确保完成 README.md 中指定的任务来赢取属于你的 Soulbound Proof-of-Knowledge NFT 吧！
+🎉 现在你已经知晓了 Yearbook 合约背后的理论了！请确保完成 README.md 中指定的任务来赢取属于你的灵魂绑定知识证明 NFT 吧！
