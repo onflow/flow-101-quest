@@ -79,9 +79,11 @@ Reset configuration using: 'flow init --reset'
 flow accounts create
 ```
 
-#### 2. 为你的账户设置别名
+流程如下：
 
-将您的新帐户命名为 `hero`，然后按照屏幕上的其余说明进行操作。
+##### 1. 为你的账户设置别名
+
+将您的新帐户命名为 `hero` ，然后按 <kbd>Enter</kbd>。 按照屏幕上的其余说明进行操作。
 
 ```bash
 Enter an account name: hero
@@ -89,7 +91,7 @@ Enter an account name: hero
 
 > 💡 您可以选择任何名字，我们尽量让指引和您的习惯保持一致。 如果您决定以不同的方式命名您的帐户，请在我们提到 `hero` 帐户和地址的任何地方替换为您的命名。
 
-#### 3. 将网络设置为测试网
+##### 2. 将网络设置为测试网
 
 ```bash
 Use the arrow keys to navigate: ↓ ↑ → ← 
@@ -99,7 +101,9 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     Flow Mainnet
 ```
 
-#### 4. 保存你的密钥信息
+##### 3. 保存你的密钥信息
+
+然后，您将看到一个确认步骤。 键入 <kbd>y</kbd> 并按 <kbd>Enter</kbd>。
 
 ```bash
 ✔ Flow Testnet
@@ -114,7 +118,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Do you want to continue? [y/N] y
 ```
 
-#### 5. 通过水龙头创建账户
+##### 4. 通过水龙头创建账户
 
 ```bash
 Please complete the following steps in a web browser:
@@ -125,7 +129,7 @@ Please complete the following steps in a web browser:
 ✔ Press <ENTER> to open in your browser...: █
 ```
 
-一旦您按下 `<ENTER>`，您的浏览器将自动定向到 [Flow 测试网水龙头](https://testnet-faucet.onflow.org/)，其中您的帐户信息也完成了**预填充**。
+一旦您按下 <kbd>Enter</kbd>，您的浏览器将自动定向到 [Flow 测试网水龙头](https://testnet-faucet.onflow.org/)，其中您的帐户信息也完成了**预填充**。
 
 唯一需要的操作是根据提示完成账户的创建。
 
@@ -142,7 +146,7 @@ Waiting for your account to be created, please finish all the steps in the brows
 
 ![Funding your testnet account from Flow faucet](./assets/testnet_faucet.gif)
 
-#### 6. 你都准备好了！
+##### 5. 你都准备好了！
 
 ```bash
 🎉 New account created with address 0xebeb17c521a0d375 and name hero.
@@ -153,10 +157,13 @@ Here’s a summary of all the actions that were taken:
  - Added hero.private.json to .gitignore.
 ```
 
-完成所有步骤后，您会注意到 2 个新文件。
+完成所有步骤后，您会注意到目录中现在出现了 2 个新文件：
 
-1) `hero.private.json`
-2) `flow.json`  
+1. `flow.json`
+2. `hero.private.json`
+
+Flow CLI 自动为我们创建了一个配置文件（`flow.json`），它引用了第二个文件 `hero.private.json`。该文件包含了新创建测试网帐户的私钥。  
+该文件会自动添加到 `.gitignore` 中，因此您不会意外泄漏任何隐私信息！
 
 如果您检查文件，您应该会看到新创建帐户的地址和私钥 👍！
 
