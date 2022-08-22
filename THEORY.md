@@ -1,5 +1,7 @@
 # Intro to Cadence and the Yearbook Contract 📚
 
+> 🌐 Languages: [简体中文](/THEORY_ZH.md)
+
 ## Introduction
 
 Today we will learn Cadence basics by creating a basic contract. We'll use the concept of a Yearbook to illustrate a lot of Cadence's strengths over other programming languages.
