@@ -67,14 +67,15 @@ Reset configuration using: 'flow init --reset'
 
 Before we can sign the yearbook, we'll need our own account! Luckily for us, we just need to run a simple command with the Flow CLI.
 
-#### 1. Create a Testnet Account
-
 ```
 flow accounts create
 ```
 
-#### 2. Name your Account
-Name your new account `hero` and follow the rest of the instructions on screen.
+Here's what the process looks like:
+
+##### 1. Name your Account
+
+Name your new account `hero` and hit <kbd>Enter</kbd>. Follow the rest of the instructions on screen.
 
 ```
 Enter an account name: hero
@@ -83,8 +84,9 @@ Enter an account name: hero
 > 💡 You can pick any name, we are trying to keep the instructions in line with your experience. If you would decide to name your account differently, please use that name everywhere we refer to `hero` account and address.
 
 
-#### 3. Set your network to Flow Testnet
+##### 2. Set your network to Flow Testnet
 
+Scroll down once to select Flow Testnet, then hit <kbd>Enter</kbd>
 ```
 Use the arrow keys to navigate: ↓ ↑ → ← 
 ? Choose a network: 
@@ -93,8 +95,9 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     Flow Mainnet
 ```
 
-#### 4. Save Account Info
+##### 3. Save Account Info
 
+You'll then get presented with a confirmation step. Type <kbd>y</kbd> and hit <kbd>Enter</kbd>.
 ```
 ✔ Flow Testnet
 
@@ -108,7 +111,8 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Do you want to continue? [y/N] y
 ```
 
-#### 5. Fund your Testnet Account
+##### 4. Fund your Testnet Account
+
 ```
 Please complete the following steps in a web browser:
  1. Complete the captcha challenge.
@@ -116,13 +120,14 @@ Please complete the following steps in a web browser:
  3. Return to this window.
 
 ✔ Press <ENTER> to open in your browser...: █
-```
 
-Once you press `<ENTER>`, your browser will be automatically directed to the [Flow Testnet Faucet](https://testnet-faucet.onflow.org/) with your account information **pre-populated**. 
+```
+Once you press <kbd>Enter</kbd>, your browser will be automatically directed to the [Flow Testnet Faucet](https://testnet-faucet.onflow.org/) with your account information **pre-populated**. 
 
 The only actions that is required are: 
 
 ```
+
 Please complete the following steps in a web browser:
  1. Complete the captcha challenge.
  2. Click the 'Create Account' button.
@@ -131,11 +136,12 @@ Please complete the following steps in a web browser:
 You can also navigate to the link manually: https://testnet-faucet.onflow.org/?key=<key_that_is_pre_populated>
 
 Waiting for your account to be created, please finish all the steps in the browser...
+
 ```
 
 ![Funding your testnet account from Flow faucet](./assets/testnet_faucet.gif)
 
-#### 6. You're all set!
+##### 6. You're all set!
 
 ```
 🎉 New account created with address 0xebeb17c521a0d375 and name hero.
@@ -146,9 +152,12 @@ Here’s a summary of all the actions that were taken:
  - Added hero.private.json to .gitignore.
 ```
 
-After you finish all the steps, you will notice that 2 new files. 
-1) `hero.private.json` 
-2) `flow.json`  
+After you finish all the steps, you will notice that 2 new files are now present in the directory:
+
+1. `flow.json`
+2. `hero.private.json` 
+
+The Flow CLI automatically created a configuration file for us (`flow.json`) that references the second file `hero.private.json`. This file contains our private key from our newly created testnet account. This file is automatically added to the `.gitignore` so you don't accidentally leak any credentials!
 
 If you inspect the files, you should see the address and private key for your freshly minted account 👍!
 
