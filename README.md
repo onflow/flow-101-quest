@@ -174,7 +174,7 @@ In this quest, we'll be skipping the [theory](https://github.com/onflow/flow-101
 
 #### 1. Init Account
 
-First let's take a look at our first transaction. If you cloned the repo, you'll find it in `cadence/transactions/init-accound.cdc`. Otherwise, just create a file called `init-account.cdc` and paste the content with following Cadence code:
+First let's take a look at our first transaction. If you cloned the repo, you'll find it in `cadence/transactions/init-account.cdc`. Otherwise, just create a file called `init-account.cdc` and paste the content with following Cadence code:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
