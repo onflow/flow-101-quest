@@ -7,8 +7,8 @@ pub contract YearbookMinter{
     pub let storagePath: StoragePath
     pub let publicPath: PublicPath
 
-		pub let errNoYearbook: String
-		pub let errWrongMessageKey: String
+    pub let errNoYearbook: String
+    pub let errWrongMessageKey: String
 
     pub resource Yearbook{
         pub let ownerAddress: Address
@@ -43,8 +43,8 @@ pub contract YearbookMinter{
         self.storagePath = /storage/Yearbook
         self.publicPath = /public/Yearbook
 
-				self.errNoYearbook = "Account does not have exposed Yearbook capability"
-				self.errWrongMessageKey = "Provide message key does not exist"
+        self.errNoYearbook = "Account does not have exposed Yearbook capability"
+        self.errWrongMessageKey = "Provide message key does not exist"
     }
 
     pub fun createYearbook(ownerAddress: Address): @Yearbook{
