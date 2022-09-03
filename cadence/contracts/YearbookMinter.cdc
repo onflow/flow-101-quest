@@ -44,7 +44,7 @@ pub contract YearbookMinter{
         self.publicPath = /public/Yearbook
 
         self.errNoYearbook = "Account does not have exposed Yearbook capability"
-        self.errWrongMessageKey = "Provide message key does not exist"
+        self.errWrongMessageKey = "Provided message key does not exist"
     }
 
     pub fun createYearbook(ownerAddress: Address): @Yearbook{
