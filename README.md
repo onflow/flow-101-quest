@@ -329,7 +329,7 @@ In order for us to deliver your Soulbound proof-of-knowledge NFT (FLOAT), you wi
 3. Login with the wallet of your choice (choose wisely! This is where you will receive your FLOAT! If you want to show this off on Instagram, choose Dapper)
 4. Click on the address in the top right
 5. Copy the Address from the “Account” tab (this is your mainnet account!)
-6. Optional: On the "Account" tab, make sure to click on "Setup Account" if this is your first time receiving/using FLOATs. 
+6. **Important**: On the "Account" tab, make sure to click on "Setup Account" if this is your first time receiving/using FLOATs. 
 
 ![Gif on how to access mainnet address from https://floats.city](https://i.imgur.com/T7Jy7YM.gif)
 
