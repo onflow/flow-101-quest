@@ -1,17 +1,19 @@
 
 # Flow 101 Quest 🪄
 
-> 🌐 Other Languages: [简体中文](README_ZH.md)
+> Other Languages: 
+> - 🇨🇳 - [简体中文](README_ZH.md)
+> - 🇷🇺 - [Russian](README_RU.md)
 
-The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
+The goal of this quest is to practice interaction with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
 
-This README contains a practical quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
+This README contains a practical part of the quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
 
 ## Quest Overview 📖
 1. Create a Testnet Account
 2. Interact with a smart contract
-- - Sign transactions (mutate the chain)
-- - Execute scripts (query the chain)
+   - Sign transactions (mutate the chain)
+   - Execute scripts (query the chain)
 
 ## What You'll Learn 💻
 1. Learn how to use Flow CLI, an essential tool as a Flow developer
