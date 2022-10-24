@@ -1,17 +1,19 @@
 
 # Flow 101 Quest 🪄
 
-> 🌐 Other Languages: [简体中文](README_ZH.md)
+> Other Languages: 
+> - 🇨🇳 - [简体中文](README_ZH.md)
+> - 🇷🇺 - [Russian](README_RU.md)
 
-The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
+The goal of this quest is to practice interaction with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
 
-This README contains a practical quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
+This README contains a practical part of the quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
 
 ## Quest Overview 📖
 1. Create a Testnet Account
 2. Interact with a smart contract
-- - Sign transactions (mutate the chain)
-- - Execute scripts (query the chain)
+   - Sign transactions (mutate the chain)
+   - Execute scripts (query the chain)
 
 ## What You'll Learn 💻
 1. Learn how to use Flow CLI, an essential tool as a Flow developer
@@ -41,7 +43,7 @@ Assuming you know the basics of a command line, it will take approximately 15 mi
 
 **Install/Update the Flow CLI**: you **will** need the Flow CLI to complete this quest. Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation and follow the instructions. You simply need to run a single command in your terminal to install it. If you already have it installed, make sure it’s the latest version (check that page for updating instructions).
 
-#### >> [Install or upgrade the Flow CLI before starting this quest](https://developers.flow.com/tools/flow-cli/install) <<
+#### \>> [Install or upgrade the Flow CLI before starting this quest](https://developers.flow.com/tools/flow-cli/install) <<
 
 **Clone this repo** (optional): This repo already provides the completed transactions and scripts in order to complete the quest. The recommended way to follow along is to clone the repo. Alternatively, you can download the repo or follow along by creating the necessary files manually. You can clone the repo by using this command:
 

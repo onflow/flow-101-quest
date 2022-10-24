@@ -1,12 +1,15 @@
 # Intro to Cadence and the Yearbook Contract 📚
 
-> 🌐 Languages: [简体中文](/THEORY_ZH.md)
+> Languages: 
+> - [简体中文](/THEORY_ZH.md)
+> - [Russian](/THEORY_RU.md)
 
 ## Introduction
 
 Today we will learn Cadence basics by creating a basic contract. We'll use the concept of a Yearbook to illustrate a lot of Cadence's strengths over other programming languages.
 
-> 🍬 You can jump righ into a live version of the code in this sandbox on the [Playground](https://play.onflow.org) - [https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e](https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e)
+> 🍬 You can jump right into a live version of the code in this sandbox on the [Playground](https://play.onflow.org) 
+- [https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e](https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e)
 
 ## Step 1 - Basic Contract
 
