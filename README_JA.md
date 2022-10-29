@@ -2,7 +2,7 @@
 
 > 🌐 他の言語: [English](README.md) [简体中文](README_ZH.md)
 
-このクエストの目的は、Flow 上でスマートコントラクトとインタラクションする練習をすることです。このクエストでは [Yearbook（年鑑）](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) コントラクトと対話することになります。このコントラクトの背景にあるコンセプト（といくつかの Cadence の入門レベルのコンセプト）は [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) で説明しています。
+このクエストの目的は、Flow 上でスマートコントラクトとインタラクションする練習をすることです。このクエストでは [Yearbook（年鑑）](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) コントラクトと対話することになります。このコントラクトの背景にあるコンセプト（といくつかの Cadence の入門レベルのコンセプト）は [THEORY.md](THEORY_JA.md) で説明しています。
 
 この README には実用的なクエストが含まれています。このクエストをクリアした人には、Soulbound の（※他のアドレスに送付できない）、知識を証明する NFT をプレゼントします。
 
