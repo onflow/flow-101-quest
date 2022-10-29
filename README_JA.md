@@ -1,108 +1,110 @@
+# Flow 101 クエスト 🪄
 
-# Flow 101 Quest 🪄
+> 🌐 他の言語: [English](README.md) [简体中文](README_ZH.md)
 
-> 🌐 Other Languages: [简体中文](README_ZH.md)
+このクエストの目的は、Flow 上でスマートコントラクトとインタラクションする練習をすることです。このクエストでは [Yearbook（年鑑）](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) コントラクトと対話することになります。このコントラクトの背景にあるコンセプト（といくつかの Cadence の入門レベルのコンセプト）は [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) で説明しています。
 
-The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
+この README には実用的なクエストが含まれています。このクエストをクリアした人には、Soulbound の（※他のアドレスに送付できない）、知識を証明する NFT をプレゼントします。
 
-This README contains a practical quest. Anyone who completes this quest will receive a Soulbound Proof-of-Knowledge NFT.
+## クエストの概要 📖
 
-## Quest Overview 📖
-1. Create a Testnet Account
-2. Interact with a smart contract
-- - Sign transactions (mutate the chain)
-- - Execute scripts (query the chain)
+1. テストネットのアカウントを作る
+2. スマートコントラクトとインタラクションする
 
-## What You'll Learn 💻
-1. Learn how to use Flow CLI, an essential tool as a Flow developer
-2. Create a testnet account on Flow
-3. Send a transactions, such as signing the 'Flow Yearbook'!
+- - トランザクションに署名する（チェーンを変更する）
+- - スクリプトを実行する（チェーンをクエリする）
 
-## Prize 🏆
+## あなたが学ぶこと 💻
+
+1. Flow 開発者の必須ツールである Flow CLI の使い方を学ぶ
+2. Flow テストネットのアカウントを作成する
+3. 「Flow Yearbook（Flow 年鑑）」に署名するなどの、トランザクションを送信する！
+
+## 賞品 🏆
 
 [<img src="https://user-images.githubusercontent.com/27052451/187195585-30fc757d-c6c4-4e24-9c31-70f89c4bf2b2.png" width=200 />](https://floats.city/andrea.find/event/482557017)
 
+クエスト達成者全員に、**[特別限定の Soulbound の知識証明 NFT](https://floats.city/andrea.find/event/482557017)** をプレゼントします。この特別な NFT を持っていると、自慢できるだけでなく、Flow 公式 Discord の `completion-gated` チャンネルにアクセスできるようになります。
 
-All quest completionists will receive **[a super exclusive soulbound proof-of-knowledge NFT](https://floats.city/andrea.find/event/482557017)**. Aside from bragging rights, this special NFT will grant access to completion-gated channels in the official Flow Discord.
+_注記：今回使う NFT の種類（[FLOATs](https://floats.city/)）は Instagram でサポートされているため、あなたの Instagram アカウントで NFT 共有機能が有効化されていれば、友人、家族、同僚に達成したことを共有できます。（※ 現状、Instagram で NFT を共有するためには、Dapper Wallet を使う必要があります）_
 
-*Note: The NFT type we are using ([FLOATs](https://floats.city/)) is supported by Instagram, so if the feature has been rolled out to your account, you’ll be able to share your accomplishment with your friends, family and colleagues.*
+## よくある質問
 
+#### このクエストの対象者は誰ですか？
 
-## FAQs❓
+どなたでも！前提知識は必要ありません :) すぐに飛び込んできてください！
 
-#### Who is eligible for this quest?
-Everyone! You don't need any pre-requisites :) Jump right in!
+#### どれくらい時間がかかりますか？
 
-#### How long will this take?
-Assuming you know the basics of a command line, it will take approximately 15 minutes!
+コマンドラインの基本を知っていると仮定すれば、約 15 分ほどで終わります！
 
+## Step 0 - 前提条件
 
-## Step 0 - Prerequisites
+**Flow CLI をインストール / アップデートする**：このクエストを完了するには、Flow CLI が**必要**です。[Flow CLI Install](https://developers.flow.com/tools/flow-cli/install) のドキュメントにアクセスし、指示に従ってください。ターミナルでコマンドをひとつ実行するだけで、インストールできます。すでにインストールされている場合は、最新バージョンであることを確認してください（アップデート方法は、このページを参照してください）。
 
-**Install/Update the Flow CLI**: you **will** need the Flow CLI to complete this quest. Visit the [Flow CLI Installation](https://developers.flow.com/tools/flow-cli/install) documentation and follow the instructions. You simply need to run a single command in your terminal to install it. If you already have it installed, make sure it’s the latest version (check that page for updating instructions).
+#### >> [Flow CLI をインストールまたはアップグレードする](https://developers.flow.com/tools/flow-cli/install) <<
 
-#### >> [Install or upgrade the Flow CLI before starting this quest](https://developers.flow.com/tools/flow-cli/install) <<
-
-**Clone this repo** (optional): This repo already provides the completed transactions and scripts in order to complete the quest. The recommended way to follow along is to clone the repo. Alternatively, you can download the repo or follow along by creating the necessary files manually. You can clone the repo by using this command:
+**このリポジトリを clone する** （任意）: このリポジトリには、クエストを完了するためのトランザクションとスクリプトがすでに含まれています。このリポジトリを clone することをお勧めします。あるいは、リポジトリをダウンロードするか、必要なファイルを手動で作成することで、クエストを進められます。このコマンドでリポジトリを clone できます:
 
 ```sh
 git clone https://github.com/onflow/flow-101-quest
 cd flow-101-quest
 ```
 
-## Step 1 - Start the Flow CLI
+## Step 1 - Flow CLI を起動する
 
-Once you are in your working directory, we'll initialize the Flow CLI and configure it in order to query Testnet.
+作業ディレクトリに移動したら、Flow CLI を初期化し、テストネットにクエリするための設定を行います。
 
 ```
 flow init
 ```
 
-You should see something like this: 
+このようなものが表示されます:
 
 ```
 Configuration initialized
 Service account: 0xf8d6e0586b0a20c7
 
-Start emulator by running: 'flow emulator' 
+Start emulator by running: 'flow emulator'
 Reset configuration using: 'flow init --reset'
 ```
 
-## Step 2 - Create your Testnet Account
+## Step 2 - テストネットのアカウントを作る
 
-Before we can sign the yearbook, we'll need our own account! Luckily for us, we just need to run a simple command with the Flow CLI.
+Yearbook（年鑑）に署名する前に、自分のアカウントが必要です！幸いなことに、Flow CLI で簡単なコマンドを実行するだけで大丈夫です。
 
 ```
 flow accounts create
 ```
 
-Here's what the process looks like:
+流れは以下の通りです:
 
-##### 1. Name your Account
+##### 1. アカウントに名前をつける
 
-Name your new account `hero` and hit <kbd>Enter</kbd>. Follow the rest of the instructions on screen.
+新しいアカウントに「hero」という名前を付けて、<kbd>Enter</kbd> を押します。あとは画面に表示される指示に従ってください。
 
 ```
 Enter an account name: hero
 ```
 
-> 💡 You can pick any name, we are trying to keep the instructions in line with your experience. If you would decide to name your account differently, please use that name everywhere we refer to `hero` account and address.
+> 💡 どのような名前でも構いませんが、私たちはあなたの経験に沿った説明を心がけています。もし、アカウントに別の名前をつける場合は、「hero」でアカウントとアドレスを参照するときに代わりにその名前を使ってください。
 
+##### 2. ネットワークを Flow Testnet に設定する
 
-##### 2. Set your network to Flow Testnet
+ひとつスクロール・ダウンして、Flow Testnet を選択し、<kbd>Enter</kbd> を押してください。
 
-Scroll down once to select Flow Testnet, then hit <kbd>Enter</kbd>
 ```
-Use the arrow keys to navigate: ↓ ↑ → ← 
-? Choose a network: 
+Use the arrow keys to navigate: ↓ ↑ → ←
+? Choose a network:
     Local Emulator
   ▸ Flow Testnet
     Flow Mainnet
 ```
 
-##### 3. Save Account Info
+##### 3. アカウント情報を保存する
 
-You'll then get presented with a confirmation step. Type <kbd>y</kbd> and hit <kbd>Enter</kbd>.
+その後、確認のステップが表示されます。<kbd>y</kbd> を入力し、<kbd>Enter</kbd> を押してください。
+
 ```
 ✔ Flow Testnet
 
@@ -116,7 +118,7 @@ You'll then get presented with a confirmation step. Type <kbd>y</kbd> and hit <k
 ? Do you want to continue? [y/N] y
 ```
 
-##### 4. Fund your Testnet Account
+##### 4. テストネットのアカウントに入金する
 
 ```
 Please complete the following steps in a web browser:
@@ -127,9 +129,12 @@ Please complete the following steps in a web browser:
 ✔ Press <ENTER> to open in your browser...: █
 
 ```
-Once you press <kbd>Enter</kbd>, your browser will be automatically directed to the [Flow Testnet Faucet](https://testnet-faucet.onflow.org/) with your account information **pre-populated**. 
 
-The only actions that is required are: 
+<kbd>Enter</kbd> を押すと、自動的にブラウザが起動し、アカウント情報が **あらかじめ入力された** [Flow Testnet Faucet](https://testnet-faucet.onflow.org/) が開かれます。
+
+必要なアクションはこれだけです:
+
+（訳注：1. captcha を完了し、2. 「Create Account」ボタンをクリックしたら、3. このコンソールに戻ってください）
 
 ```
 
@@ -146,7 +151,7 @@ Waiting for your account to be created, please finish all the steps in the brows
 
 ![Funding your testnet account from Flow faucet](https://i.imgur.com/P6hyGlk.gif)
 
-##### 6. You're all set!
+##### 6. これで準備万端です！
 
 ```
 🎉 New account created with address 0xebeb17c521a0d375 and name hero.
@@ -157,35 +162,35 @@ Here’s a summary of all the actions that were taken:
  - Added hero.private.json to .gitignore.
 ```
 
-After you finish all the steps, you will notice that 2 new files are now present in the directory:
+すべての手順が終了すると、ディレクトリ内に 2 つの新しいファイルが作られていることに気づくでしょう:
 
 1. `flow.json`
-2. `hero.private.json` 
+2. `hero.private.json`
 
-The Flow CLI automatically created a configuration file for us (`flow.json`) that references the second file `hero.private.json`. This file contains our private key from our newly created testnet account. This file is automatically added to the `.gitignore` so you don't accidentally leak any credentials!
+Flow CLI は、`hero.private.json` を参照する、設定ファイル (`flow.json`) を自動的に作成しました。このファイルには、新しく作成したテストネットのアカウントの秘密鍵が含まれています。このファイルは自動的に `.gitignore` に追加されるので、誤って重要情報を漏らしてしまうことはありません！
 
-If you inspect the files, you should see the address and private key for your freshly minted account 👍!
+ファイルを確認すると、新しく作成したアカウントのアドレスと秘密鍵が表示されているはずです 👍！
 
-## Step 3 - Class is in Session!
+## Step 3 - 授業を始めます！
 
-The official Flow Yearbook contract is already deployed to Testnet, so in this quest we'll simply be interacting with it from the command line, via the Flow CLI. You can view it on Flow View Source (one of Flow's contract explorers). Click [here](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) to view the contract. Alternatively, check the [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) file for context on how the contract works.
+公式の Flow Yearbook コントラクトはすでにテストネットにデプロイされているので、このクエストでは単に Flow CLI を介して、コマンドラインからそれを操作することにします。Flow View Source（Flow のコントラクト・エクスプローラーのひとつ）で見ることができます。コントラクトを見るには [ここ](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) をクリックしてください。または、コントラクトがどのように動作するかというコンテキストは、[THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) ファイルを確認してください。
 
-In this quest, we'll be skipping the [theory](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) and showing you how to interact with scripts and transactions via the Flow CLI. Let's go!
+このクエストでは、[理論](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md) を省略し、Flow CLI を使ってスクリプトとトランザクションを操作する方法を紹介します。さあ、行きましょう！
 
-#### 1. Init Account
+#### 1. アカウントを初期化する
 
-First let's take a look at our first transaction. If you cloned the repo, you'll find it in `cadence/transactions/init-account.cdc`. Otherwise, just create a file called `init-account.cdc` and paste the content with following Cadence code:
+まず、最初のトランザクションを見てみましょう。もしリポジトリを clone している場合、`cadence/transactions/init-account.cdc` にあります。そうでなければ、`init-account.cdc` というファイルを作成して、その中身に以下の Cadence コードを貼り付けてください:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
 
 transaction {
   prepare(signer: AuthAccount) {
-    // checks if we have a yearbook resource in our account
+    // アカウントにYearbookリソースがあるかどうか確認します。
     let yearbookExists = signer.getCapability(YearbookMinter.publicPath)
       .check<&YearbookMinter.Yearbook>()
 
-    // if it doesn't find one, let's create a new one.
+    // 見つからない場合、新たに作りましょう
     if(!yearbookExists){
       let book <- YearbookMinter.createYearbook(ownerAddress: signer.address)
       signer.save(<-book, to: YearbookMinter.storagePath)
@@ -195,29 +200,29 @@ transaction {
 }
 ```
 
-Now we will use the Flow CLI to send this transaction and sign it with our `hero` account
+では、Flow CLI を使ってこのトランザクションを送信し、`hero` アカウントで署名してみましょう。
 
 ```
 flow transactions send ./cadence/transactions/init-account.cdc --signer=hero --network=testnet
 ```
 
-> NOTE: This command will only work if you cloned the repo, since the file `./init-account.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./init-account.cdc` instead in the command above.
+> 注記: このコマンドは、リポジトリを clone している場合のみ動作します。なぜなら、ファイル `./init-account.cdc` は `./cadence/transactions/` に配置されているからです。ディレクトリのどこにいるかによって、上のコマンドのパスを適宜更新してください。例えば、リポジトリのホームディレクトリにファイルを作成した場合、上のコマンドでは代わりに `./init-account.cdc` を使います。
 
-Let's dissect this script:
+スクリプトを分解してみましょう:
 
-`--signer` flag will tell the CLI to use your `hero` profile as a signer 
+`--signer` フラグは、署名者として `hero` プロフィールを使うように CLI に指示します
 
-`--network` flag will specify which network we are interacting with - in this case we are using `Testnet`
+`--network` フラグは、やりとりするネットワークを指定します - 今顔の場合、`Testnet` を使います
 
-This step initiates your account and creates a Yearbook resource if it doesn't exist yet.
+このステップでは、あなたのアカウントを開始し、Yearbook リソースがまだ存在しない場合は、それを作成します。
 
-**Pro Tip** 👉 every time you run a transaction, the Flow CLI will poll until the transaction status is **sealed**, which means it is fully committed to the chain. So once a transaction finished, make sure to check the outcome of command by scrolling up and checking that it says "Status ✅ SEALED" and no other errors.
+**プロ向けのヒント** 👉 トランザクションを実行するたびに、Flow CLI はトランザクションのステータスが **sealed** になるまで、つまり、チェーンに完全にコミットされるまでポーリングします。そのため、トランザクションが終了したら、上にスクロールしてコマンドの結果を確認し、「Status ✅ SEALED」と表示され、その他のエラーがないことを確認します。
 
-#### 2. Get Messages (from a Yearbook)
+#### 2. （年鑑から)メッセージを取得する
 
-To keep things civil, we limited the messages that people can leave on each others' yearbooks. You'll need to specify a message key instead of a custom message. Let’s get a list of available keys and corresponding messages.
+お互いの年鑑に残せるメッセージは、礼儀正しいものとなるように制限をいれています。そのため、任意のメッセージの代わりに、メッセージのキーを指定する必要があります。利用可能なキーと対応するメッセージのリストを取得しましょう。
 
-If you cloned the repo, you'll find the next file in `cadence/scripts/get-message-keys.cdc`. If you're creating them from scratch, create a file called `get-message-keys.cdc` and paste the following Cadence code:
+もしリポジトリをクローンしたのなら、ファイルは `cadence/scripts/get-message-keys.cdc` にあります。ゼロから作成する場合は、`get-message-keys.cdc` というファイルを作成し、以下の Cadence のコードを貼り付けてください:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
@@ -227,14 +232,15 @@ pub fun main(): {String: String} {
 }
 ```
 
-Execute the script with the following Flow CLI command:
+以下の Flow CLI コマンドでスクリプトを実行します:
 
 ```
 flow scripts execute ./cadence/scripts/get-message-keys.cdc --network=testnet
 ```
-> NOTE: This command will only work if you cloned the repo, since the file `./init-account.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./get-message-keys.cdc` instead in the command above.
 
-This will give you a list of keys:
+> 注記: ファイル `./init-account.cdc` は `./cadence/scripts/` にあるため、このコマンドはリポジトリを clone している場合のみ動作します。ディレクトリのどこにいるかによって、上のコマンドのパスを適宜更新してください。例えば、リポジトリのホームディレクトリにファイルを作成した場合、上のコマンドでは、代わりに `./get-message-keys.cdc` を使用します。
+
+これで、キーの一覧が表示されます:
 
 ```javascript
 "hello": "Hello",
@@ -244,126 +250,130 @@ This will give you a list of keys:
 "fun": "You make my life fun!"
 ```
 
-Pick your favorite, and now let's leave a message in the main Flow Yearbook!
+お気に入りのものを選んで、さあ、メインの Flow 年鑑にメッセージを残しましょう!
 
-#### 3. Sign the Yearbook
+#### 3. 年鑑に署名する
 
-In order to sign the Flow Yearbook, you will need to submit a transaction. 
+Flow 年鑑に署名するためには、トランザクション送信が必要です。
 
-* Flow Yearbook Testnet Address: `0x63ffd70144f80d07` 
+- Flow 年鑑のテストネット・アドレス: `0x63ffd70144f80d07`
 
-To sign the yearbook, we'll be executing the code below. If you cloned the repo, you'll find the file in `cadence/transactions/sign-yearbook.cdc`. If you're creating them from scratch, create a file called `sign-yearbook.cdc` and paste the following Cadence code:
+年鑑に署名するために、以下のコードを実行することになります。もしリポジトリを clone している場合、`cadence/transactions/sign-yearbook.cdc` にファイルがあります。ゼロから作成する場合は、`sign-yearbook.cdc` というファイルを作成し、以下の Cadence コードを貼り付けてください:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
 
 transaction(yearbookOwner: Address, messageKey: String){
     prepare(signer: AuthAccount){
-        // borrow the public reference & capability to the Yearbook at the address specified
+        // 指定されたアドレスの Yearbook へのパブリックな reference と capability を借りる
         let yearbookReference = getAccount(yearbookOwner)
             .getCapability(YearbookMinter.publicPath)
             .borrow<&YearbookMinter.Yearbook>()
             ?? panic(YearbookMinter.errNoYearbook)
-        
-        // sign the yearbook
+
+        // 年鑑に署名する
         yearbookReference.leaveMessage(signer: signer.address, messageKey: messageKey)
     }
 }
 ```
 
-This transaction takes two arguments: 
-- `yearbookOwner` - the address of the Yearbook owner we are trying to modify
-- `messageKey` - the message key we’ve just discussed
+このトランザクションには 2 つの引数があります:
 
-To run this transaction, use the following command. We are using the `fun` message key as an example, feel free to choose your favorite from the list in the previous section.
+- `yearbookOwner` - 変更をいれる年鑑の所有者のアドレス
+- `messageKey` - 先ほど説明したメッセージのキー
+
+このトランザクションを実行するには、以下のコマンドを使用します。ここでは例として `fun` というメッセージキーを使っていますが、前のセクションのリストの中から好きなものを自由に選んでください。
 
 ```
-flow transactions send ./cadence/transactions/sign-yearbook.cdc 0x63ffd70144f80d07 fun --signer=hero --network=testnet 
+flow transactions send ./cadence/transactions/sign-yearbook.cdc 0x63ffd70144f80d07 fun --signer=hero --network=testnet
 ```
 
-> NOTE: This command will only work if you cloned the repo, since the file `sign-yearbook.cdc` is located in `./cadence/transactions/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./sign-yearbook.cdc` instead in the command above.
+> 注記: ファイル `sign-yearbook.cdc` は `./cadence/transactions/` にあるため、このコマンドはリポジトリを clone している場合のみ動作します。ディレクトリのどこにいるかによって、上のコマンドのパスを適宜更新してください。例えば、リポジトリのホームディレクトリにファイルを作成した場合、上記のコマンドでは、代わりに `./sign-yearbook.cdc` を使用します。
 
+#### 4. 年鑑からメッセージを読む
 
-#### 4. Read Messages from Yearbook
+#### 年鑑のメッセージを取得する
 
-#### Get Yearbook Messages
+さらに、他のヒーローたちが残した過去のメッセージもすべて読めます - 自分と他のヒーロー、両方のアカウントから。
 
-Additionally you can also read all previous messages left by other heroes - both from your and others' accounts.
-
-To do this, we'll use the `get-messages.cdc` script file, which you will find in `cadence/scripts/`. Otherwise create it from scratch and paste in the following Cadence code:
+これを行うには、`cadence/scripts/` にある `get-messages.cdc` スクリプト・ファイルを使います。そうでなければ、ゼロから作成して、以下の Cadence コードを貼り付けてください:
 
 ```javascript
 import YearbookMinter from 0x63ffd70144f80d07
 
 pub fun main(owner: Address): {Address: String}{
-    // get a reference to the yearbook
+    // 年鑑の reference（参照）を取得する
     let yearbookReference = getAccount(owner)
         .getCapability(YearbookMinter.publicPath)
-        .borrow<&YearbookMinter.Yearbook>() 
+        .borrow<&YearbookMinter.Yearbook>()
         ?? panic(YearbookMinter.errNoYearbook)
-    
-    // return its messages
+
+    // そのメッセージを返す
     return yearbookReference.messages
 }
 ```
 
-Let’s check our Yearbook and see who left messages there:
+年鑑を見て、誰がメッセージを残しているか確認しましょう。
 
 ```javascript
-flow scripts execute ./cadence/scripts/get-messages.cdc 0x63ffd70144f80d07 --network=testnet 
+flow scripts execute ./cadence/scripts/get-messages.cdc 0x63ffd70144f80d07 --network=testnet
 ```
 
-> NOTE: This command will only work if you cloned the repo, since the file `get-messages.cdc` is located in `./cadence/scripts/`. Based on where you are in the directory, update the path in the command above accordingly. For example, if you created the file in the home directory of the repo, you should use `./get-messages.cdc` instead in the command above.
+> 注記: ファイル `get-messages.cdc` は `./cadence/scripts/` にあるので、このコマンドはリポジトリを clone しているた場合のみ動作します。ディレクトリのどこにいるかによって、上のコマンドのパスを適宜更新してください。例えば、リポジトリのホームディレクトリにファイルを作成した場合、上記のコマンドでは、代わりに `./get-messages.cdc` を使用します。
 
+年鑑に残されたアドレスとメッセージの一覧が表示されるはずです。
 
-You should be able to see a list of addresses and corresponding messages, they have left in our Yearbook. 
+`0x63ffd70144f80d07` を自分のアドレスに書き換えて、`hero.private.json` ファイルにあるアドレスから、自分の年鑑に誰がメッセージを残したかを確認することもできます。もしメッセージがない場合は、別のテストネット・アカウントを作成してメッセージを残してみるか、これを友人にシェアしてメッセージを残してもらいましょう！ :)
 
-You can also update that `0x63ffd70144f80d07` to your own address - which can be found within `hero.private.json` file and check who left messages in your Yearbook. If you don't have any messages, you can create another testnet account and try leaving one, or share this with a friend and get them to leave a message! :) 
+## Step 4 - メインネットのアカウントを取得して、NFT を受け取ろう！
 
+Soulbound の知識証明 NFT（FLOAT）を届けるために、あなたはメインネット・アカウントのアドレスを送る必要があります。[Float City](https://floats.city/) のウェブページでウォレットを作成して、FLOAT Collection を初期設定するのが最も簡単な方法です。
 
-## Step 4 - Get a Mainnet Account to receive your NFT!
-In order for us to deliver your Soulbound proof-of-knowledge NFT (FLOAT), you will need to send us your Mainnet account address. The easiest way is via [Float City](https://floats.city/) webpage - which will also help to initialize your account with FLOAT Collection.
-
-1. Visit [https://floats.city](https://floats.city) 
-2. Click on “Connect Wallet” 
-3. Login with the wallet of your choice (choose wisely! This is where you will receive your FLOAT! If you want to show this off on Instagram, choose Dapper)
-4. Click on the address in the top right
-5. Copy the Address from the “Account” tab (this is your mainnet account!)
-6. **Important**: On the "Account" tab, make sure to click on "Setup Account" if this is your first time receiving/using FLOATs. 
+1. [https://floats.city](https://floats.city) にアクセスします。
+2. "Connect Wallet" をクリックします。
+3. 選択したウォレットでログイン（賢く選択！ここで選んだウォレットで FLOAT を受け取ります！Instagram で見せびらかせたいなら、Dapper を選んでください）
+4. 右上のアドレスをクリック
+5. "Account" タブからアドレスをコピー（これがあなたのメインネット・アカウントです！）
+6. **重要**: "Account" タブで、初めて FLOAT を受け取る/利用する場合は、必ず "Setup Account" をクリックしてください。
 
 ![Gif on how to access mainnet address from https://floats.city](https://i.imgur.com/T7Jy7YM.gif)
 
-## Step 5 - You made it! 👏
+## Step 5 - やりました！ 👏
 
-Congratulations on sending your first transactions on Testnet and utilizing Flow CLI commands! You're well on your way to becoming a proficient developer on Flow. In order to receive your soulbound Proof-of-Knowledge NFT, please fill out the form with the following information: 
+テストネットで最初のトランザクションを送信し、Flow CLI コマンドを活用できました！おめでとうございます。あなたは Flow の熟練した開発者になるための道を順調に進んでいます。Soulbound の知識証明 NFT を受け取るには、以下の情報をフォームに入力してください。
 
-- Testnet Account Address (to verify your work - you'll find this in your `hero.private.json` file)
-- Mainnet Account Address (to receive the FLOAT)
-- Email Address (so we can reach out for SWAG!)
+- テストネット・アカウントのアドレス（あなたの作業を検証するため、`hero.private.json` ファイルに記載されています）
+- メインネット・アカウントのアドレス（FLOAT を受け取るため）
+- メールアドレス（賞品を受け取るために必要）
 
-# [>><img src="https://user-images.githubusercontent.com/27052451/187195585-30fc757d-c6c4-4e24-9c31-70f89c4bf2b2.png" width=30 /> SUBMISSION FORM <<](https://share.hsforms.com/1ouJ1prrSR566_ZuB9krH5Q3u4gy)
+# [>><img src="https://user-images.githubusercontent.com/27052451/187195585-30fc757d-c6c4-4e24-9c31-70f89c4bf2b2.png" width=30 /> 提出フォーム <<](https://share.hsforms.com/1ouJ1prrSR566_ZuB9krH5Q3u4gy)
 
-*Verification process will be automatically processed every week and you can expect to see your FLOAT in your account within a week's time of your form submission*
+_検証プロセスは毎週自動的に処理され、フォーム送信から 1 週間以内にあなたのアカウントに FLOAT が表示される予定です。_
 
---------
+---
 
-# Next Steps
+# 次のステップ
 
-You've completed the quest. Now what? Well, something you should attempt doing is building a dapp around the Yearbook. Wondering how to do that? Here's a list of resources you should explore as next steps:
+あなたはクエストを完了しました。さて、次はどうしましょうか？あなたが試みるべきことは、年鑑の周辺に dapp を構築することです。どうすればいいでしょうか？次のステップとして、探索すべきリソースのリストがあります:
 
-### Learn how to build Web3 Dapps
+### Web3 Dapps の作り方を学ぶ
+
+[](https://academy.ecdao.org/challenges/hello-world)
+
 - [Emerald Academy - Hello World Dapp Challenge](https://academy.ecdao.org/challenges/hello-world)
 - [Emerald Academy - Simple NFT Dapp Challenge](https://academy.ecdao.org/challenges/non-fungible-token)
 - [Emerald Academy - Simple Fungible Token Challenge](https://academy.ecdao.org/challenges/fungible-token)
 - [Buildspace - Flow Track](https://buildspace.so/flow)
 - [LearnWeb3 - Flow Track](https://learnweb3.io/courses/18f86037-e600-4933-aa8e-375f26055d53)
 
-### Mastering Cadence
+### Cadence を使いこなす
+
 - [Flow Playground Cadence Tutorials](https://play.onflow.org)
 - [Join the next Cadence Bootcamp](https://academy.ecdao.org/)
 
-### Social Channels
+### ソーシャル・チャンネル
+
 - [Flow Twitter](https://twitter.com/flow_blockchain)
 - [Flow Discord](https://discord.gg/flow)
 
-Be sure to reach out if you have any questions!
+何か質問があれば、ぜひご連絡ください!

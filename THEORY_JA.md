@@ -1,32 +1,33 @@
-# Intro to Cadence and the Yearbook Contract 📚
+# Cadence と 年鑑コントラクトの紹介 📚
 
-> 🌐 Languages: [简体中文](/THEORY_ZH.md)
+> 🌐 言語: [English](THEORY.md) [简体中文](THEORY_ZH.md)
 
-## Introduction
+## はじめに
 
-Today we will learn Cadence basics by creating a basic contract. We'll use the concept of a Yearbook to illustrate a lot of Cadence's strengths over other programming languages.
+今日は、基本的なコントラクトを作成することで、Cadence（ケイデンス）の基本を学びます。年鑑のコンセプトを用いて、他のプログラミング言語と比較した場合の Cadence の強みをたくさん説明します。
 
-> 🍬 You can jump righ into a live version of the code in this sandbox on the [Playground](https://play.onflow.org) - [https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e](https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e)
+> 🍬 [Playground](https://play.onflow.org) - [https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e](https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e) に行くち、このコードのサンドボックス内のライブバージョンをすぐに実行できます。
 
-## Step 1 - Basic Contract
+## Step 1 - 基本的なコントラクト
 
-In this tutorial, we will use the [Flow Playground](https://play.onflow.org) - a simulated environment of the Flow blockchain, where 
-we can experiment with Cadence, transactions and scripts!
+このチュートリアルでは、Flow ブロックチェーンのシミュレーション環境である [Flow Playground](https://play.onflow.org) を使います。
+Cadence、トランザクション、スクリプトを試すことができます。
 
-It also has all the necessary features of modern IDE:
-- code highlighting
-- interactive language server
-- code completion, etc.
+モダンな IDE に必要な機能がすべて備わっています。
 
-Let’s define the most basic contract on Flow. In its most basic form, it is a one-liner like this:
+- コードのハイライト
+- インタラクティブな言語サーバー
+- コード補完など
+
+Flow 上で最も基本的なコントラクトを定義してみましょう。最も基本的な形は、次のような一行のコードです。
 
 ```jsx
 pub contract YearbookMinter{ }
 ```
 
-It’s a perfectly viable contract, though it doesn’t do much 😅
+これは間違いなく実行可能なコントラクトですが、大したことはできません 😅
 
-We will define an empty resource inside of the body of our contract and call it `Yearbook`:
+コントラクトの中身に、空のリソースを定義して、それを `Yearbook`（年鑑）と呼ぶことにします。
 
 ```jsx
 pub contract YearbookMinter{
@@ -34,24 +35,23 @@ pub contract YearbookMinter{
 }
 ```
 
-Resources are essential concepts in Cadence. Resources unlock richer composability options than EVM or WASM, and are a perfect fit for digital assets. Labelling something as a “Resource” tells the programming environment that this data structure represents something of tangible value and that all code that interacts with that data structure needs to follow a series of special rules that will maintain the value of that data structure.
+リソースは Cadence に不可欠なコンセプトです。リソースは、EVM や WASM よりも豊富なコンポーザビリティのオプションを提供し、デジタルアセットに最適なものです。リソースというラベルを付けることで、プログラミング環境に対して、このデータ構造は具体的な価値を持つものであり、このデータ構造と相互作用するすべてのコードは、このデータ構造の価値を維持するための一連の特別なルールに従わなければならない、ということを示します。
 
-So, what are these rules?
+では、そのルールとは何でしょうか？
 
-- Each Resource exists in exactly one place at any given time. Resources can’t be duplicated or accidentally deleted, either through programming error or malicious code.
-- Ownership of a Resource is defined by where it is stored. There is no central ledger that needs to be consulted to determine ownership.
-- Access to methods on a Resource is limited to the owner. For example, only the owner of a Yearbook can choose to delete it, but the owner can let anyone sign it, via capabilities.
+- 各リソースは、いつでも正確に 1 つの場所に存在する。リソースは複製されたり、プログラミングのエラーや悪意のあるコードによって誤って削除されることはない。
+- リソースの所有は、それが保存されている場所によって定義される。所有を決めるために参照される中央の台帳は存在しない。
+- リソース上のメソッドへのアクセスは、所有者に限定される。例えば、Yearbook の所有者だけがそれを削除できます。ただし、所有者は Capability を使うことによって、誰でもそれに署名させることもできます。
 
-Just like our previous version, this contract only holds the definition of the resource. 
-However, instances of said resource won’t have any properties. Let’s add some!
+前のバージョンと同様に、このコントラクトはリソースの定義を持っているだけです。
+このリソースのインスタンスは、プロパティを持ちません。それでは、プロパティを追加しましょう。
 
-We want a Yearbook to be able to store messages from other users, so that users can leave messages on each others' yearbooks. 
-In order to enable this we will define a [Dictionary](https://docs.onflow.org/cadence/language/values-and-types/#dictionaries) called `messages`. It will use [Address](https://docs.onflow.org/cadence/language/values-and-types/#addresses) of other user as `key` and store `value` as  [String](https://docs.onflow.org/cadence/language/values-and-types/#strings-and-characters). So our dictionary type will be `{Address: String}`.
+Yearbook に他のユーザからのメッセージを保存できるようにし、ユーザが互いの Yearbook にメッセージを残せるようにしたいです。
+これを実現するために、`messages` という名前の [ディクショナリ](https://docs.onflow.org/cadence/language/values-and-types/#dictionaries) を定義します。このディクショナリは、他のユーザの [Address](https://docs.onflow.org/cadence/language/values-and-types/#addresses) を `key` として使用し、 `value` を [String](https://docs.onflow.org/cadence/language/values-and-types/#strings-and-characters) として格納します。つまり、ディクショナリの型は `{Address: String}` となります。
 
-> 💡 If you are coming from Ethereum, Dictionary is something that will be called `mapping` in Solidity.
-> 
+> 💡 あなたが Ethereum から来た場合・・・ディクショナリは、Solidity では `mapping` と呼ばれるものです。
 
-After necessary changes our code should look like this:
+必要な変更を加えると、以下のようなコードになります:
 
 ```jsx
 pub contract YearbookMinter{
@@ -65,11 +65,9 @@ pub contract YearbookMinter{
 }
 ```
 
-> 💡 Notice, since we’ve added fields to our resource, we also need to implement `init` method, which would set initial values for all defined fields. We would initialize our `messages` with empty dictionary. 
+> 💡 リソースにフィールドを追加したので、すべてのフィールドの初期値を設定する `init` メソッドを実装する必要があります。ここでは、`messages` を空のディクショナリで初期化します。
 
-We’ve defined `messages` field with `let` keyword stating that it’s immutable - it won’t be possible to reassign it to another Dictionary, 
-but we want other users to be able to leave us a messages. It’s possible to change values of the dictionary within the scope, 
-where it is defined - in our case, the body of `Yearbook` resource. Let’s define a `leaveMessage` function to enable this:
+メッセージのフィールドは `let` キーワードで定義しています。これはイミュータブルであり、他のディクショナリに再割り当てできません。しかし、他のユーザーがメッセージを残せるようにしたいです。ディクショナリの値は、ディクショナリが定義されているスコープ内 (この例では `Yearbook` リソースのボディ) で変更可能です。これを可能にするために、 `leaveMessage` 関数を定義してみましょう:
 
 ```jsx
 pub contract YearbookMinter{
@@ -87,13 +85,13 @@ pub contract YearbookMinter{
 }
 ```
 
-We are using reserved keyword `self` to access parent of current context - here it will refer to the instance of Yearbook resource, which was used to invoke our `leaveMessage` function.
+予約されたキーワード `self` を使って、現在のコンテキストの親にアクセスしています。ここでは、 `leaveMessage` 関数を呼び出すのに使われた Yearbook リソースのインスタンスを参照しています。
 
-### Step 1.1 - Add a `minter`
+### Step 1.1 - `minter` を追加する
 
-Even if we deploy this contract now, nobody will be able to use this resource. The problem is that resources should be created only within the body of the contract, where its type is defined. 
+今、このコントラクトをデプロイしても、誰もこのリソースを使うことはできないでしょう。ここでの問題は、リソースはコントラクトの本体でのみ作成され、そこでその型が定義されている必要があることです。
 
-We will fix this by adding a simple function `createYearbook`:
+そこで、シンプルな関数 `createYearbook` を追加することで、この問題を解決します:
 
 ```jsx
 pub contract YearbookMinter{
@@ -115,16 +113,16 @@ pub contract YearbookMinter{
 }
 ```
 
-Reserved keyword `create` is used to construct new instance of resource and `<-` operator is ued to `move` resource from one place to another. 
-This approach was designed in order to prevent unwanted loss of resources.
+予約されたキーワード `create` はリソースの新しいインスタンスを作るために用いられます。`<-` 演算子はリソースをある場所から別の場所に移動させるために用いられます。
+このアプローチは、リソースの望まれない紛失を防ぐために考案されました。
 
-## Step 2 - Contract Improvements
+## Step 2 - コントラクトの改善
 
-### Step 2.1 - Better Detailed Yearbook
+### Step 2.1 - より詳細な年鑑
 
-The more unique properties there are on Yearbook - the more interesting we make it!
+Yearbook にユニークなプロパティがあればあるほど、より面白いものになります！
 
-Since resources can be transfered between accounts, let’s define the `ownerAddress` and ask it as argument during resource instantiation:
+アカウント間でリソースの受け渡しができるので、`ownerAddress` を定義して、リソースのインスタンス化の際の引数に加えてみましょう:
 
 ```jsx
 pub contract YearbookMinter{
@@ -148,21 +146,21 @@ pub contract YearbookMinter{
 }
 ```
 
-> 💡 We allow to set those value only once, during resouce creation, but it’s possible to implement it in a way, where owner will be able to change it at will.
+> 💡 この値は、リソースの作成時に一度だけ設定できるようにしていますが、所有者が自由に変更できるように実装することは可能です。
 
-### Step 2.2 - Contract Events
+### Step 2.2 - コントラクトのイベント
 
-In order to keep track of when a new Yearbook is created or someone left a message - for example, to reflect this in your user interface - we will emit two [Events](https://docs.onflow.org/cadence/language/events/#gatsby-focus-wrapper):
+新しい Yearbook が作成されたときや、誰かがメッセージを残したときに、それを記録するために、例えば、ユーザインタフェースに反映させるために、2 つの [イベント](https://docs.onflow.org/cadence/language/events/#gatsby-focus-wrapper) を発行します。
 
-- `YearbookCreated` will be emitted, when new instance of `Yearbook` resource is created
-- `YearbookSigned` will be emitted, when user left a message in Yearbook
+- `YearbookCreated` イベントは、`Yearbook` リソースの新しいインスタンスが作成されたときに発行されます
+- `YearbookSigned` イベントは、ユーザが Yearbook にメッセージを残したときに発行されます
 
-We will put our events on top of the contract and then emit them inside of Yearbook `init` method and at the end of `leaveMessage` function: 
+イベントをコントラクト上に定義し、Yearbook の `init` 関数内と `leaveMessage` 関数の最後でイベントを発行することにします。
 
 ```jsx
-pub contract YearbookMinter{    
+pub contract YearbookMinter{
     pub event YearbookCreated(owner: Address)
-    pub event YearbookSigned(signer: Address, owner: Address, message: String) 
+    pub event YearbookSigned(signer: Address, owner: Address, message: String)
 
     pub resource Yearbook{
         pub let ownerAddress: Address
@@ -170,7 +168,7 @@ pub contract YearbookMinter{
 
         pub fun leaveMessage(signer: Address, message: String){
             self.messages[signer] = message
-            emit YearbookSigned(signer: signer, owner: self.ownerAddress, message: message) 
+            emit YearbookSigned(signer: signer, owner: self.ownerAddress, message: message)
         }
 
         init(_ owner: Address){
@@ -187,17 +185,17 @@ pub contract YearbookMinter{
 }
 ```
 
-You technically dont *need* events, but it makes it possible to listen for these events and react to them in, for example, a web app.
+技術的にはイベントは _必須_ のものではないのですが、例えば、ウェブアプリなどでイベントをリッスンして反応させることが可能になります。
 
-### Step 2.3 - Moderate Messages
+### Step 2.3 - 抑制されたメッセージ
 
-We'll mitigate trolling by providing a fixed list of messages that people can use to sign each other's Yearbooks. 
-The list will be stored in form of a `{String: String}` dictionary.
+我々は、人々がお互いの Yearbook に署名するために使うメッセージの固定リストを提供することによって、荒らしを軽減します。
+このリストは `{String: String}` ディクショナリの形で保存されます。
 
 ```jsx
-pub contract YearbookMinter{    
+pub contract YearbookMinter{
     pub event YearbookCreated(owner: Address)
-    pub event YearbookSigned(signer: Address, owner: Address, message: String) 
+    pub event YearbookSigned(signer: Address, owner: Address, message: String)
 
     pub let allowedMessages: {String: String}
 
@@ -208,7 +206,7 @@ pub contract YearbookMinter{
         pub fun leaveMessage(signer: Address, messageKey: String){
             if let message = YearbookMinter.allowedMessages[messageKey]{
 	            self.messages[signer] = message
-	            emit YearbookSigned(signer: signer, owner: self.ownerAddress, message: message) 
+	            emit YearbookSigned(signer: signer, owner: self.ownerAddress, message: message)
             } else {
                 panic("Provide message key does not exist")
             }
@@ -228,7 +226,7 @@ pub contract YearbookMinter{
             "bff": "You are the best friend anyone could ask for!",
             "cya": "See you around",
             "gator": "Later, aligator!",
-            "fun": "You make my life fun!"		
+            "fun": "You make my life fun!"
         }
     }
 
@@ -238,25 +236,26 @@ pub contract YearbookMinter{
 }
 ```
 
-`if let` construct is called [Optional Binding](https://developers.flow.com/cadence/language/control-flow#optional-binding) and it will allow us to ensure that value at provided message key exist, otherwise we will execute code in `else` block - in our case we would call `panic` with specific message to stop code execution.
+`if let` の書き方は [オプショナル・バインディング](https://developers.flow.com/cadence/language/control-flow#optional-binding) と呼ばれ、与えられた messageKey の値が存在することを確認できます。なければ、 `else` ブロックのコードを実行します。この例では、所定のメッセージとともに `panic` を呼び出し、コードの実行を停止させます。
 
-### Step 2.4 - Add Public Paths and Error Messages
+### Step 2.4 - パブリック・パスとエラーメッセージの追加
+
+よりよい探索性を提供するために、インタラクションで使える、よく知られたパブリック・パスとストレージ・パスを追加しましょう。また、共通のエラーメッセージも追加しましょう - これは必須ではなく、トランザクションは `panic` メソッドだけでいつでも実行を停止できますが、良い習慣です！
 
 In order to provide better discoverability, let’s add known public and storage paths, that we would use in our interactions. We also add common error messages - it’s not a necessity and transactions can stop execution at any time via the `panic` method, but a nice practice!
 
-
 ```bash
-pub contract YearbookMinter{    
+pub contract YearbookMinter{
     pub event YearbookCreated(owner: Address)
-    pub event YearbookSigned(signer: Address, owner: Address, message: String) 
+    pub event YearbookSigned(signer: Address, owner: Address, message: String)
 
     pub let allowedMessages: {String: String}
 
     pub let storagePath: StoragePath
     pub let publicPath: PublicPath
 
-		pub let errNoYearbook: String
-		pub let errWrongMessageKey: String
+    pub let errNoYearbook: String
+    pub let errWrongMessageKey: String
 
     pub resource Yearbook{
         pub let ownerAddress: Address
@@ -265,7 +264,7 @@ pub contract YearbookMinter{
         pub fun leaveMessage(signer: Address, messageKey: String){
             if let message = YearbookMinter.allowedMessages[messageKey]{
 	            self.messages[signer] = message
-	            emit YearbookSigned(signer: signer, owner: self.ownerAddress, message: message) 
+	            emit YearbookSigned(signer: signer, owner: self.ownerAddress, message: message)
             } else {
                 panic(YearbookMinter.errWrongMessageKey)
             }
@@ -285,14 +284,14 @@ pub contract YearbookMinter{
             "bff": "You are the best friend anyone could ask for!",
             "cya": "See you around",
             "gator": "Later, aligator!",
-            "fun": "You make my life fun!"		
+            "fun": "You make my life fun!"
         }
 
         self.storagePath = /storage/Yearbook
         self.publicPath = /public/Yearbook
 
-				self.errNoYearbook = "Account does not have exposed Yearbook capability"
-				self.errWrongMessageKey = "Provide message key does not exist"
+        self.errNoYearbook = "Account does not have exposed Yearbook capability"
+        self.errWrongMessageKey = "Provide message key does not exist"
     }
 
     pub fun createYearbook(ownerAddress: Address): @Yearbook{
@@ -301,22 +300,20 @@ pub contract YearbookMinter{
 }
 ```
 
-While it adds a couple extra lines, it allows us to reference paths like `YearbookMinter.publicPath`, which will ensure consistency of the paths across interactions, without having to hardcode paths in our scripts.
+これにより、スクリプト内でパスをハードコードすることなく、 `YearbookMinter.publicPath` のようなパスを参照できるようになり、インタラクション間でのパスの一貫性を確保できます。
 
-## Step 3 - Interactions
+## Step 3 - インタラクション
 
-Now when we have our contract ready, let’s define some interactions.
+さて、コントラクトの準備ができたら、いくつかのインタラクションを定義してみましょう。
 
-- `Scripts`: are used to query data from contracts and accounts (i.e. the chain). Scripts can’t modify the state of the chain. Even if you call method on the contract, which suppose to change state - those changes won’t be preserved after execution of code.
-- `Transactions`: are use to *mutate* the chain, i.e. change the state of the information stored on accounts.
+- `スクリプト`: コントラクトとアカウントのデータ（つまり、チェーン）をクエリするために使われます。スクリプトはチェーンの状態を変更することはできません。たとえ、コントラクトの状態を変更するようなメソッドを呼び出したとしても、コードの実行後にはその変更は保持されません。
+- `トランザクション`: チェーンを _変更する_、つまりアカウントに保存されている情報のステートを変更するために使われます。
 
-### Step 3.1 - Read Allowed Messages
+### Step 3.1 - 許可されたメッセージを読み取る
 
-We can read the list of allowed messages from contract code, but there should be a pragrammatic way of doing this. 
-We can achieve this with simple Cadence script:
+コントラクト・コードから、許可されたメッセージのリストを読み取ることができますが、これを行うためのプログラマティックな方法があるはずです。簡単な Cadence スクリプトでこれを実現できます。
 
-> 💡 We will be importing the improved version of the contract, deployed to `0x02` account
-> 
+> 💡 `0x02` アカウントにデプロイされた改良版コントラクトをインポートしています。
 
 ```jsx
 import YearbookMinter from 0x02
@@ -326,13 +323,13 @@ pub fun main(): [String] {
 }
 ```
 
-`keys` method  on the dictionary will return all available keys as array. Since our `allowedMessages` dictionary of type `{String:String}` , calling it will return us array of strings - `[String]`
+ディクショナリの `keys` メソッドは、利用可能なすべてのキーを配列として返します。`AllowedMessages` のディクショナリは `{String:String}` 型なので、これを呼び出すと、文字列の配列 - `[String]` が返されます。
 
-### Step 3.2 - Init Account
+### Step 3.2 - アカウントを初期化する
 
-Since we want our users to participate in this fun activity, we need to create transaction, which will mint new `Yearbook` resource, store it in signer’s storage and then expose publicly avaialbe capability.
+ユーザーに、この楽しいアクティビティに参加してもらうために、新しい `Yearbook` リソースを作成し、署名者のストレージに保存して、一般に利用可能な Capability を公開するトランザクションを作成する必要があります。
 
-We will also add a fail-safe switch, which will check if account already have Yearbook stored and exposed and won’t override existing one:
+また、フェール・セーフ・スイッチを追加して、アカウントがすでに Yearbook を保存して公開しているかどうかをチェックし、既存のものを上書きしないようにします。
 
 ```jsx
 import YearbookMinter from 0x02
@@ -351,18 +348,17 @@ transaction {
 }
 ```
 
-`.check()` method will check if capability on provided path exists and is of proper type - in our case it should be `<&YearbookMinter.Yearbook>`
+`.check()` メソッドは、指定されたパスに Capability が存在するか、また適切な型（この例では `<&YearbookMinter.Yearbook>`）かチェックします。
 
-`.save()` method will store newly created Yearbook into storage (notice `move` operator - `<-` - here to pass resource as first argument)
+`.save()` メソッドは、新しく作成された Yearbook をストレージに保存します（ここで `move` 演算子（`<-`）が、第一引数にリソースを渡すことに注目してください）。
 
-And finally `.link()` method will create and expose publicly available capability (which we will use in following transaction)
+そして最後に `.link()` メソッドは、一般に公開される Capability を作成して公開します（これは次のトランザクションで使います）。
 
-> 💡You’ve probably noticed how convenient it to use those public and storage paths - you don’t need to memorize them or refer to the contract  code and IDE will give you code suggestions as well!
-> 
+> 💡 public パスと storage パスを使うことがいかに便利であるか、あなたはおそらくお気づきでしょう。
 
-### Step 3.3 - Leave Message
+### Step 3.3 - メッセージを残す
 
-In order to leave message in someone’s Yearbook we will need to grab publicly exposed capability from that account and call `leaveMessage` method, passing our address and message key.
+誰かの Yearbook にメッセージを残すには、そのアカウントから公開されている Capability を取得し、アドレスとメッセージ・キーを渡して `leaveMessage` メソッドを呼び出す必要があります。
 
 ```jsx
 import YearbookMinter from 0x02
@@ -379,39 +375,37 @@ transaction(yearbookOwner: Address, messageKey: String){
 }
 ```
 
-`getAccount` method called with account address will return us instance of `PublicAccount` corresponding to that account. This will provide us access to it’s public capabilities and allow to get a reference to their Yearbook. If account don’t have capability we want, transaction will stop execution via `panic` with provided message.
+アカウントのアドレスを指定して `getAccount` メソッドを呼び出すと、そのアカウントに対応する `PublicAccount` のインスタンスが返ってきます。これはそのアカウントのパブリックな Capability へのアクセスを提供し、その Yearbook への参照を取得することを可能にします。もし、アカウントに必要な Capability がない場合、トランザクションは `panic` によって、指定されたメッセージと共に実行を停止します。
 
-After we succesfully `.borrow` a reference to Yearbook resource, we can call `leaveMessage`.
+Yearbook リソースへの参照を `.borrow` した後、 `leaveMessage` を呼び出すことができます。
 
-> 💡 As you might have guessed it’s easy to spoof `signer` argument, by providing ANY address and impersonate another account. It’s possible to mitigate this (to a certain extent), though we won’t cover it as this time.
+> 💡 お察しの通り、`signer` 引数に任意のアドレスを与えて、他のアカウントになりすますことは簡単です。今回は取り上げませんが、これを（ある程度）抑制することは可能です。
 
+### Step 3.4 - Yearbook 　のメッセージを取得する
 
-### Step 3.4 - Get Yearbook messages
+最後に、`Address` 引数を取得し、他の人が残したメッセージをすべて取得しようとするスクリプトを作成しましょう。
 
-Finally, let’s create a script, which will get `Address` argument and try to fetch all available messages left by others.
-
-Again, we will try to get a reference to Yearbook resource with `getAccount` and `getCapability` combo and then return value of `messages` field.
+ここでも、`getAccount` と `getCapability` の組み合わせで Yearbook リソースへの参照を取得します。そして `messages` フィールドの値を返します。
 
 ```jsx
 import YearbookMinter from 0x02
 pub fun main(owner: Address): {Address: String}{
     let yearbookReference = getAccount(owner)
         .getCapability(YearbookMinter.publicPath)
-        .borrow<&YearbookMinter.Yearbook>() 
+        .borrow<&YearbookMinter.Yearbook>()
         ?? panic(YearbookMinter.errNoYearbook)
-    
+
     return yearbookReference.messages
 }
 ```
 
-## Resources
+## 各種リソース
 
 - Flow Playground - [https://play.onflow.org/local-project](https://play.onflow.org/local-project)
 - Docs: Dictionaries - [https://docs.onflow.org/cadence/language/values-and-types/#dictionaries](https://docs.onflow.org/cadence/language/values-and-types/#dictionaries)
 - Docs: Resources - [https://docs.onflow.org/cadence/language/resources/](https://docs.onflow.org/cadence/language/resources/)
 - Docs: Events - [https://docs.onflow.org/cadence/language/events/#gatsby-focus-wrapper](https://docs.onflow.org/cadence/language/events/#gatsby-focus-wrapper)
 
+## 完了！
 
-## COMPLETE! 
-
-🎉 Now you know the theory behind the Yearbook contract! Make sure to complete the quest in the README.md to earn your unique Soulbound Proof-of-Knowledge NFT.
+🎉 これで Yearbook コントラクトの基礎がわかりましたね! README.md にあるクエストをクリアして、あなただけの Soulbound の知識証明 NFT を獲得してください。

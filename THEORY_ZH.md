@@ -1,6 +1,6 @@
 # Cadence 简介以及 Yearbook 合约说明 📚
 
-> 🌐 Languages: [English](THEORY.md)
+> 🌐 Languages: [English](THEORY.md) [日本語](THEORY_JA.md)
 
 ## 内容简介
 

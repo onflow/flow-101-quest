@@ -1,7 +1,7 @@
 
 # Flow 101 Quest 🪄
 
-> 🌐 Other Languages: [简体中文](README_ZH.md)
+> 🌐 Other Languages: [简体中文](README_ZH.md) [日本語](README_JA.md)
 
 The goal of this quest is to practice interactive with smart contracts on Flow. In this quest we will be interacting with the [Yearbook](https://flow-view-source.com/testnet/account/0x63ffd70144f80d07/contract/YearbookMinter) contract. The theory behind this contract (as well as some introductory Cadence concepts) are covered in [THEORY.md](https://github.com/onflow/flow-101-quest/blob/main/THEORY.md). 
 

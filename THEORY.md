@@ -1,6 +1,6 @@
 # Intro to Cadence and the Yearbook Contract 📚
 
-> 🌐 Languages: [简体中文](/THEORY_ZH.md)
+> 🌐 Languages: [简体中文](THEORY_ZH.md) [日本語](THEORY_JA.md)
 
 ## Introduction
 
