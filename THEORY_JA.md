@@ -6,7 +6,7 @@
 
 今日は、基本的なコントラクトを作成することで、Cadence（ケイデンス）の基本を学びます。年鑑のコンセプトを用いて、他のプログラミング言語と比較した場合の Cadence の強みをたくさん説明します。
 
-> 🍬 [Playground](https://play.onflow.org) - [https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e](https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e) に行くち、このコードのサンドボックス内のライブバージョンをすぐに実行できます。
+> 🍬 [Playground](https://play.onflow.org) - [https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e](https://play.onflow.org/bbcdce0a-ea52-449f-bc0e-4fddd5079f9e) に行くと、このコードのサンドボックス内のライブバージョンをすぐに実行できます。
 
 ## Step 1 - 基本的なコントラクト
 
