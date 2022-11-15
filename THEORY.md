@@ -148,7 +148,7 @@ pub contract YearbookMinter{
 }
 ```
 
-> 💡 We allow to set those value only once, during resouce creation, but it’s possible to implement it in a way, where owner will be able to change it at will.
+> 💡 We allow to set those value only once, during resource creation, but it’s possible to implement it in a way, where owner will be able to change it at will.
 
 ### Step 2.2 - Contract Events
 
@@ -291,8 +291,8 @@ pub contract YearbookMinter{
         self.storagePath = /storage/Yearbook
         self.publicPath = /public/Yearbook
 
-				self.errNoYearbook = "Account does not have exposed Yearbook capability"
-				self.errWrongMessageKey = "Provide message key does not exist"
+		self.errNoYearbook = "Account does not have exposed Yearbook capability"
+		self.errWrongMessageKey = "Provide message key does not exist"
     }
 
     pub fun createYearbook(ownerAddress: Address): @Yearbook{
@@ -330,7 +330,7 @@ pub fun main(): [String] {
 
 ### Step 3.2 - Init Account
 
-Since we want our users to participate in this fun activity, we need to create transaction, which will mint new `Yearbook` resource, store it in signer’s storage and then expose publicly avaialbe capability.
+Since we want our users to participate in this fun activity, we need to create transaction, which will mint new `Yearbook` resource, store it in signer’s storage and then expose publicly available capability.
 
 We will also add a fail-safe switch, which will check if account already have Yearbook stored and exposed and won’t override existing one:
 
